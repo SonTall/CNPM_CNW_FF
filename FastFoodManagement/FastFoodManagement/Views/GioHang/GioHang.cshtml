@@ -1,0 +1,79 @@
+﻿@model List<FastFoodManagement.Models.GioHang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<main role="main" class="probootstrap-main js-probootstrap-main">
+    <h5>Giỏ hàng của bạn</h5>
+    <table id="divGioHang">
+        <tr>
+            <td style="font-weight: bold;">Mã sách</td>
+            <td style="font-weight: bold;">Tên sách</td>
+            <td style="font-weight: bold;">Hình ảnh</td>
+            <td style="font-weight: bold;">Đơn giá</td>
+            <td style="font-weight: bold;">Số lượng</td>
+            <td style="font-weight: bold;">Thành tiền</td>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.iMaMonAn</td>
+
+                <td>@item.sTenMonAn</td>
+
+                <td><a href="@Url.Action("Details", "MonAns", new { @id = item.iMaMonAn})"><img src="@Url.Content("~/HinhAnh/"+item.sHinhAnh)" width="100" height="100" /></a></td>
+
+                <td>
+                    @String.Format("{0:0,0}", item.dDonGia) VNĐ
+                </td>
+
+                <td>@item.iSoLuong</td>
+
+                <td>@String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
+
+            </tr>
+
+        }
+
+        <tr>
+            <td colspan="6" style="text-align:right;color:blue">
+                @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang")
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:right;color:blue">
+                @using (Html.BeginForm("DatHang", "GioHang"))
+                {
+                <input type="submit" style="cursor:pointer;" id="btnDatHang" value="Đặt hàng " class="btn btn-sm btn-success ">
+                }
+            </td>
+        </tr>
+    </table>
+</main>
+@*Css giỏ hàng*@
+<style>
+    #divGioHang {
+        color: black;
+        border: 1px solid #EEEEEE;
+        margin-left: 3%;
+        font-size: 17px;
+        width: 90%;
+    }
+
+        #divGioHang td {
+            margin: auto;
+            padding: 10px;
+            border: 1px solid #EEEEEE;
+            /*float:left;*/
+        }
+
+        #divGioHang #btnDatHang{
+            position: center;
+            margin: auto;
+        }
+</style>

@@ -1,0 +1,68 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.PagedList<FastFoodManagement.Models.MonAn>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TenMonAn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DonGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().HinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().GhiChu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().HinhAnh)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenMonAn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HinhAnh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GhiChu)
+            </td>
+            <td>
+                <div id="Anh"><img src="@Url.Content("~/Content/img"+item.HinhAnh)" width="56" height="65" /></div>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaMonAn }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaMonAn }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaMonAn })
+            </td>
+        </tr>
+    }
+
+</table>
+@*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount*@
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

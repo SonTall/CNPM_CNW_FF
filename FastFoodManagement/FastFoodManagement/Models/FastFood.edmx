@@ -1,0 +1,674 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FastFoodManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ChuDe">
+          <Key>
+            <PropertyRef Name="MaChuDe" />
+          </Key>
+          <Property Name="MaChuDe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenChuDe" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+            <PropertyRef Name="MaMonAn" />
+          </Key>
+          <Property Name="MaHoaDon" Type="int" Nullable="false" />
+          <Property Name="MaMonAn" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GiamGia">
+          <Key>
+            <PropertyRef Name="MaKhuyenMai" />
+            <PropertyRef Name="MaHoaDon" />
+          </Key>
+          <Property Name="MaKhuyenMai" Type="int" Nullable="false" />
+          <Property Name="MaHoaDon" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HoaDonThanhToan">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+          </Key>
+          <Property Name="MaHoaDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaNhanVien" Type="int" Nullable="false" />
+          <Property Name="MaKhachHang" Type="int" />
+          <Property Name="MaKhachVangLai" Type="int" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+          <Property Name="ThoiGian" Type="datetime" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="MaKhachHang" />
+          </Key>
+          <Property Name="MaKhachHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenKhachHang" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+          <Property Name="SoDienThoai" Type="nchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenTaiKhoan" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+          <Property Name="HinhAnh" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KhachVangLai">
+          <Key>
+            <PropertyRef Name="MaKhachVangLai" />
+          </Key>
+          <Property Name="MaKhachVangLai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KhuyenMai">
+          <Key>
+            <PropertyRef Name="MaKhuyenMai" />
+          </Key>
+          <Property Name="MaKhuyenMai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MoTa" Type="text" />
+          <Property Name="ThoiGianBatDau" Type="datetime" />
+          <Property Name="ThoiGianKetThuc" Type="datetime" />
+          <Property Name="GiaTri" Type="float" />
+        </EntityType>
+        <EntityType Name="MonAn">
+          <Key>
+            <PropertyRef Name="MaMonAn" />
+          </Key>
+          <Property Name="MaMonAn" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MaChuDe" Type="int" Nullable="false" />
+          <Property Name="TenMonAn" Type="nvarchar" MaxLength="50" />
+          <Property Name="DonGia" Type="nvarchar" MaxLength="50" />
+          <Property Name="HinhAnh" Type="nvarchar" MaxLength="50" />
+          <Property Name="GhiChu" Type="text" />
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="MaNhanVien" />
+          </Key>
+          <Property Name="MaNhanVien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="MaTaiKhoan" />
+          </Key>
+          <Property Name="MaTaiKhoan" Type="int" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+          <Property Name="ThoiGianTao" Type="date" />
+          <Property Name="LoaiTaiKhoan" Type="int" />
+          <Property Name="HinhAnh" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_DONHANG_HOADON">
+          <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDonThanhToan">
+              <PropertyRef Name="MaHoaDon" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="MaHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONHANG_MONAN">
+          <End Role="MonAn" Type="Self.MonAn" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonAn">
+              <PropertyRef Name="MaMonAn" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="MaMonAn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOADON_KHUYENMAI_HOADON">
+          <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="1" />
+          <End Role="GiamGia" Type="Self.GiamGia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDonThanhToan">
+              <PropertyRef Name="MaHoaDon" />
+            </Principal>
+            <Dependent Role="GiamGia">
+              <PropertyRef Name="MaHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOADON_KHUYENMAI_KHUYENMAI">
+          <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="1" />
+          <End Role="GiamGia" Type="Self.GiamGia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhuyenMai">
+              <PropertyRef Name="MaKhuyenMai" />
+            </Principal>
+            <Dependent Role="GiamGia">
+              <PropertyRef Name="MaKhuyenMai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDonThanhToan_KhachHang">
+          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+          <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="MaKhachHang" />
+            </Principal>
+            <Dependent Role="HoaDonThanhToan">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDonThanhToan_KhachVangLai">
+          <End Role="KhachVangLai" Type="Self.KhachVangLai" Multiplicity="0..1" />
+          <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachVangLai">
+              <PropertyRef Name="MaKhachVangLai" />
+            </Principal>
+            <Dependent Role="HoaDonThanhToan">
+              <PropertyRef Name="MaKhachVangLai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDonThanhToan_NhanVien">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+          <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="HoaDonThanhToan">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonAn_ChuDe">
+          <End Role="ChuDe" Type="Self.ChuDe" Multiplicity="1" />
+          <End Role="MonAn" Type="Self.MonAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChuDe">
+              <PropertyRef Name="MaChuDe" />
+            </Principal>
+            <Dependent Role="MonAn">
+              <PropertyRef Name="MaChuDe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHANVIEN_TAIKHOAN">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="MaTaiKhoan" />
+            </Principal>
+            <Dependent Role="NhanVien">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FastFoodManagementModelStoreContainer">
+          <EntitySet Name="ChuDe" EntityType="Self.ChuDe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GiamGia" EntityType="Self.GiamGia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoaDonThanhToan" EntityType="Self.HoaDonThanhToan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhachVangLai" EntityType="Self.KhachVangLai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhuyenMai" EntityType="Self.KhuyenMai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonAn" EntityType="Self.MonAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DONHANG_HOADON" Association="Self.FK_DONHANG_HOADON">
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONHANG_MONAN" Association="Self.FK_DONHANG_MONAN">
+            <End Role="MonAn" EntitySet="MonAn" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOADON_KHUYENMAI_HOADON" Association="Self.FK_HOADON_KHUYENMAI_HOADON">
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
+            <End Role="GiamGia" EntitySet="GiamGia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOADON_KHUYENMAI_KHUYENMAI" Association="Self.FK_HOADON_KHUYENMAI_KHUYENMAI">
+            <End Role="KhuyenMai" EntitySet="KhuyenMai" />
+            <End Role="GiamGia" EntitySet="GiamGia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDonThanhToan_KhachHang" Association="Self.FK_HoaDonThanhToan_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHang" />
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDonThanhToan_KhachVangLai" Association="Self.FK_HoaDonThanhToan_KhachVangLai">
+            <End Role="KhachVangLai" EntitySet="KhachVangLai" />
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDonThanhToan_NhanVien" Association="Self.FK_HoaDonThanhToan_NhanVien">
+            <End Role="NhanVien" EntitySet="NhanVien" />
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonAn_ChuDe" Association="Self.FK_MonAn_ChuDe">
+            <End Role="ChuDe" EntitySet="ChuDe" />
+            <End Role="MonAn" EntitySet="MonAn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHANVIEN_TAIKHOAN" Association="Self.FK_NHANVIEN_TAIKHOAN">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="NhanVien" EntitySet="NhanVien" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FastFoodManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+            <PropertyRef Name="MaMonAn" />
+          </Key>
+          <Property Name="MaHoaDon" Type="Int32" Nullable="false" />
+          <Property Name="MaMonAn" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MonAn" Relationship="Self.FK_DONHANG_MONAN" FromRole="DonHang" ToRole="MonAn" />
+          <NavigationProperty Name="HoaDonThanhToan" Relationship="FastFoodManagementModel.FK_DONHANG_HOADON1" FromRole="DonHang" ToRole="HoaDonThanhToan" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="MaKhachHang" />
+          </Key>
+          <Property Name="MaKhachHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HoaDonThanhToans" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_KhachHang" FromRole="KhachHang" ToRole="HoaDonThanhToan" />
+          <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="KhachVangLai">
+          <Key>
+            <PropertyRef Name="MaKhachVangLai" />
+          </Key>
+          <Property Name="MaKhachVangLai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HoaDonThanhToans" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_KhachVangLai" FromRole="KhachVangLai" ToRole="HoaDonThanhToan" />
+        </EntityType>
+        <EntityType Name="KhuyenMai">
+          <Key>
+            <PropertyRef Name="MaKhuyenMai" />
+          </Key>
+          <Property Name="MaKhuyenMai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ThoiGianBatDau" Type="DateTime" Precision="3" />
+          <Property Name="ThoiGianKetThuc" Type="DateTime" Precision="3" />
+          <Property Name="GiaTri" Type="Double" />
+          <NavigationProperty Name="HoaDonThanhToans" Relationship="FastFoodManagementModel.GiamGia1" FromRole="KhuyenMai" ToRole="HoaDonThanhToan" />
+        </EntityType>
+        <EntityType Name="MonAn">
+          <Key>
+            <PropertyRef Name="MaMonAn" />
+          </Key>
+          <Property Name="MaMonAn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenMonAn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DonGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DonHangs" Relationship="Self.FK_DONHANG_MONAN" FromRole="MonAn" ToRole="DonHang" />
+          <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MaChuDe" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChuDe" Relationship="FastFoodManagementModel.FK_MonAn_ChuDe" FromRole="MonAn" ToRole="ChuDe" />
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="MaNhanVien" />
+          </Key>
+          <Property Name="MaNhanVien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_NHANVIEN_TAIKHOAN" FromRole="NhanVien" ToRole="TaiKhoan" />
+          <NavigationProperty Name="HoaDonThanhToans" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_NhanVien" FromRole="NhanVien" ToRole="HoaDonThanhToan" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="MaTaiKhoan" />
+          </Key>
+          <Property Name="MaTaiKhoan" Type="Int32" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianTao" Type="DateTime" Precision="0" />
+          <Property Name="LoaiTaiKhoan" Type="Int32" />
+          <NavigationProperty Name="NhanVien" Relationship="Self.FK_NHANVIEN_TAIKHOAN" FromRole="TaiKhoan" ToRole="NhanVien" />
+          <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_DONHANG_MONAN">
+          <End Role="MonAn" Type="Self.MonAn" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonAn">
+              <PropertyRef Name="MaMonAn" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="MaMonAn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHANVIEN_TAIKHOAN">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="MaTaiKhoan" />
+            </Principal>
+            <Dependent Role="NhanVien">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FastFoodManagementEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
+          <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+          <EntitySet Name="KhachVangLais" EntityType="Self.KhachVangLai" />
+          <EntitySet Name="KhuyenMais" EntityType="Self.KhuyenMai" />
+          <EntitySet Name="MonAns" EntityType="Self.MonAn" />
+          <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+          <AssociationSet Name="FK_DONHANG_MONAN" Association="Self.FK_DONHANG_MONAN">
+            <End Role="MonAn" EntitySet="MonAns" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHANVIEN_TAIKHOAN" Association="Self.FK_NHANVIEN_TAIKHOAN">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="NhanVien" EntitySet="NhanViens" />
+          </AssociationSet>
+          <EntitySet Name="HoaDonThanhToans" EntityType="FastFoodManagementModel.HoaDonThanhToan" />
+          <AssociationSet Name="FK_DONHANG_HOADON1" Association="FastFoodManagementModel.FK_DONHANG_HOADON1">
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDonThanhToan_KhachHang" Association="FastFoodManagementModel.FK_HoaDonThanhToan_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDonThanhToan_KhachVangLai" Association="FastFoodManagementModel.FK_HoaDonThanhToan_KhachVangLai">
+            <End Role="KhachVangLai" EntitySet="KhachVangLais" />
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDonThanhToan_NhanVien" Association="FastFoodManagementModel.FK_HoaDonThanhToan_NhanVien">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+          </AssociationSet>
+          <AssociationSet Name="GiamGia1" Association="FastFoodManagementModel.GiamGia1">
+            <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+            <End Role="KhuyenMai" EntitySet="KhuyenMais" />
+          </AssociationSet>
+          <EntitySet Name="ChuDes" EntityType="FastFoodManagementModel.ChuDe" />
+          <AssociationSet Name="FK_MonAn_ChuDe" Association="FastFoodManagementModel.FK_MonAn_ChuDe">
+            <End Role="ChuDe" EntitySet="ChuDes" />
+            <End Role="MonAn" EntitySet="MonAns" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="HoaDonThanhToan">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+          </Key>
+          <Property Name="MaHoaDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaNhanVien" Type="Int32" Nullable="false" />
+          <Property Name="MaKhachHang" Type="Int32" />
+          <Property Name="MaKhachVangLai" Type="Int32" />
+          <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DonHangs" Relationship="FastFoodManagementModel.FK_DONHANG_HOADON1" FromRole="HoaDonThanhToan" ToRole="DonHang" />
+          <NavigationProperty Name="KhachHang" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_KhachHang" FromRole="HoaDonThanhToan" ToRole="KhachHang" />
+          <NavigationProperty Name="KhachVangLai" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_KhachVangLai" FromRole="HoaDonThanhToan" ToRole="KhachVangLai" />
+          <NavigationProperty Name="NhanVien" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_NhanVien" FromRole="HoaDonThanhToan" ToRole="NhanVien" />
+          <NavigationProperty Name="KhuyenMais" Relationship="FastFoodManagementModel.GiamGia1" FromRole="HoaDonThanhToan" ToRole="KhuyenMai" />
+        </EntityType>
+        <Association Name="FK_DONHANG_HOADON1">
+          <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="1" />
+          <End Type="FastFoodManagementModel.DonHang" Role="DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDonThanhToan">
+              <PropertyRef Name="MaHoaDon" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="MaHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDonThanhToan_KhachHang">
+          <End Type="FastFoodManagementModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+          <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="MaKhachHang" />
+            </Principal>
+            <Dependent Role="HoaDonThanhToan">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDonThanhToan_KhachVangLai">
+          <End Type="FastFoodManagementModel.KhachVangLai" Role="KhachVangLai" Multiplicity="0..1" />
+          <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachVangLai">
+              <PropertyRef Name="MaKhachVangLai" />
+            </Principal>
+            <Dependent Role="HoaDonThanhToan">
+              <PropertyRef Name="MaKhachVangLai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDonThanhToan_NhanVien">
+          <End Type="FastFoodManagementModel.NhanVien" Role="NhanVien" Multiplicity="1" />
+          <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="HoaDonThanhToan">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GiamGia1">
+          <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="*" />
+          <End Type="FastFoodManagementModel.KhuyenMai" Role="KhuyenMai" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ChuDe">
+          <Key>
+            <PropertyRef Name="MaChuDe" />
+          </Key>
+          <Property Name="MaChuDe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenChuDe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MonAns" Relationship="FastFoodManagementModel.FK_MonAn_ChuDe" FromRole="ChuDe" ToRole="MonAn" />
+        </EntityType>
+        <Association Name="FK_MonAn_ChuDe">
+          <End Type="FastFoodManagementModel.ChuDe" Role="ChuDe" Multiplicity="1" />
+          <End Type="FastFoodManagementModel.MonAn" Role="MonAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChuDe">
+              <PropertyRef Name="MaChuDe" />
+            </Principal>
+            <Dependent Role="MonAn">
+              <PropertyRef Name="MaChuDe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FastFoodManagementModelStoreContainer" CdmEntityContainer="FastFoodManagementEntities1">
+          <EntitySetMapping Name="DonHangs">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.DonHang">
+              <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+                <ScalarProperty Name="MaMonAn" ColumnName="MaMonAn" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhachHangs">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.KhachHang">
+              <MappingFragment StoreEntitySet="KhachHang">
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhachVangLais">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.KhachVangLai">
+              <MappingFragment StoreEntitySet="KhachVangLai">
+                <ScalarProperty Name="MaKhachVangLai" ColumnName="MaKhachVangLai" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhuyenMais">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.KhuyenMai">
+              <MappingFragment StoreEntitySet="KhuyenMai">
+                <ScalarProperty Name="MaKhuyenMai" ColumnName="MaKhuyenMai" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
+                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonAns">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.MonAn">
+              <MappingFragment StoreEntitySet="MonAn">
+                <ScalarProperty Name="MaChuDe" ColumnName="MaChuDe" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="MaMonAn" ColumnName="MaMonAn" />
+                <ScalarProperty Name="TenMonAn" ColumnName="TenMonAn" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhanViens">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.NhanVien">
+              <MappingFragment StoreEntitySet="NhanVien">
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoans">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.TaiKhoan">
+              <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="ThoiGianTao" ColumnName="ThoiGianTao" />
+                <ScalarProperty Name="LoaiTaiKhoan" ColumnName="LoaiTaiKhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoaDonThanhToans">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.HoaDonThanhToan">
+              <MappingFragment StoreEntitySet="HoaDonThanhToan">
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="MaKhachVangLai" ColumnName="MaKhachVangLai" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="GiamGia1" TypeName="FastFoodManagementModel.GiamGia1" StoreEntitySet="GiamGia">
+            <EndProperty Name="KhuyenMai">
+              <ScalarProperty Name="MaKhuyenMai" ColumnName="MaKhuyenMai" />
+            </EndProperty>
+            <EndProperty Name="HoaDonThanhToan">
+              <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ChuDes">
+            <EntityTypeMapping TypeName="FastFoodManagementModel.ChuDe">
+              <MappingFragment StoreEntitySet="ChuDe">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TenChuDe" ColumnName="TenChuDe" />
+                <ScalarProperty Name="MaChuDe" ColumnName="MaChuDe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

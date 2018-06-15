@@ -1,0 +1,50 @@
+﻿@model FastFoodManagement.Models.KhuyenMai
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KhuyenMai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGianBatDau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianBatDau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGianKetThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianKetThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaTri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaTri)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaKhuyenMai }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

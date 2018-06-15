@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FastFoodManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="MaHoaDon" />
+      <PropertyRef Name="MaMonAn" />
+    </Key>
+    <Property Name="MaHoaDon" Type="Int32" Nullable="false" />
+    <Property Name="MaMonAn" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MonAn" Relationship="Self.FK_DONHANG_MONAN" FromRole="DonHang" ToRole="MonAn" />
+    <NavigationProperty Name="HoaDonThanhToan" Relationship="FastFoodManagementModel.FK_DONHANG_HOADON1" FromRole="DonHang" ToRole="HoaDonThanhToan" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKhachHang" />
+    </Key>
+    <Property Name="MaKhachHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HoaDonThanhToans" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_KhachHang" FromRole="KhachHang" ToRole="HoaDonThanhToan" />
+    <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="KhachVangLai">
+    <Key>
+      <PropertyRef Name="MaKhachVangLai" />
+    </Key>
+    <Property Name="MaKhachVangLai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="HoaDonThanhToans" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_KhachVangLai" FromRole="KhachVangLai" ToRole="HoaDonThanhToan" />
+  </EntityType>
+  <EntityType Name="KhuyenMai">
+    <Key>
+      <PropertyRef Name="MaKhuyenMai" />
+    </Key>
+    <Property Name="MaKhuyenMai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ThoiGianBatDau" Type="DateTime" Precision="3" />
+    <Property Name="ThoiGianKetThuc" Type="DateTime" Precision="3" />
+    <Property Name="GiaTri" Type="Double" />
+    <NavigationProperty Name="HoaDonThanhToans" Relationship="FastFoodManagementModel.GiamGia1" FromRole="KhuyenMai" ToRole="HoaDonThanhToan" />
+  </EntityType>
+  <EntityType Name="MonAn">
+    <Key>
+      <PropertyRef Name="MaMonAn" />
+    </Key>
+    <Property Name="MaMonAn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenMonAn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DonHangs" Relationship="Self.FK_DONHANG_MONAN" FromRole="MonAn" ToRole="DonHang" />
+    <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MaChuDe" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ChuDe" Relationship="FastFoodManagementModel.FK_MonAn_ChuDe" FromRole="MonAn" ToRole="ChuDe" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="MaNhanVien" />
+    </Key>
+    <Property Name="MaNhanVien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_NHANVIEN_TAIKHOAN" FromRole="NhanVien" ToRole="TaiKhoan" />
+    <NavigationProperty Name="HoaDonThanhToans" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_NhanVien" FromRole="NhanVien" ToRole="HoaDonThanhToan" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="MaTaiKhoan" />
+    </Key>
+    <Property Name="MaTaiKhoan" Type="Int32" Nullable="false" />
+    <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ThoiGianTao" Type="DateTime" Precision="0" />
+    <Property Name="LoaiTaiKhoan" Type="Int32" />
+    <NavigationProperty Name="NhanVien" Relationship="Self.FK_NHANVIEN_TAIKHOAN" FromRole="TaiKhoan" ToRole="NhanVien" />
+    <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_DONHANG_MONAN">
+    <End Role="MonAn" Type="Self.MonAn" Multiplicity="1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonAn">
+        <PropertyRef Name="MaMonAn" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="MaMonAn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHANVIEN_TAIKHOAN">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="MaTaiKhoan" />
+      </Principal>
+      <Dependent Role="NhanVien">
+        <PropertyRef Name="MaNhanVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FastFoodManagementEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="KhachVangLais" EntityType="Self.KhachVangLai" />
+    <EntitySet Name="KhuyenMais" EntityType="Self.KhuyenMai" />
+    <EntitySet Name="MonAns" EntityType="Self.MonAn" />
+    <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+    <AssociationSet Name="FK_DONHANG_MONAN" Association="Self.FK_DONHANG_MONAN">
+      <End Role="MonAn" EntitySet="MonAns" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHANVIEN_TAIKHOAN" Association="Self.FK_NHANVIEN_TAIKHOAN">
+      <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+      <End Role="NhanVien" EntitySet="NhanViens" />
+    </AssociationSet>
+    <EntitySet Name="HoaDonThanhToans" EntityType="FastFoodManagementModel.HoaDonThanhToan" />
+    <AssociationSet Name="FK_DONHANG_HOADON1" Association="FastFoodManagementModel.FK_DONHANG_HOADON1">
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonThanhToan_KhachHang" Association="FastFoodManagementModel.FK_HoaDonThanhToan_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonThanhToan_KhachVangLai" Association="FastFoodManagementModel.FK_HoaDonThanhToan_KhachVangLai">
+      <End Role="KhachVangLai" EntitySet="KhachVangLais" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonThanhToan_NhanVien" Association="FastFoodManagementModel.FK_HoaDonThanhToan_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanViens" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+    </AssociationSet>
+    <AssociationSet Name="GiamGia1" Association="FastFoodManagementModel.GiamGia1">
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+      <End Role="KhuyenMai" EntitySet="KhuyenMais" />
+    </AssociationSet>
+    <EntitySet Name="ChuDes" EntityType="FastFoodManagementModel.ChuDe" />
+    <AssociationSet Name="FK_MonAn_ChuDe" Association="FastFoodManagementModel.FK_MonAn_ChuDe">
+      <End Role="ChuDe" EntitySet="ChuDes" />
+      <End Role="MonAn" EntitySet="MonAns" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="HoaDonThanhToan">
+    <Key>
+      <PropertyRef Name="MaHoaDon" />
+    </Key>
+    <Property Name="MaHoaDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaNhanVien" Type="Int32" Nullable="false" />
+    <Property Name="MaKhachHang" Type="Int32" />
+    <Property Name="MaKhachVangLai" Type="Int32" />
+    <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ThoiGian" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DonHangs" Relationship="FastFoodManagementModel.FK_DONHANG_HOADON1" FromRole="HoaDonThanhToan" ToRole="DonHang" />
+    <NavigationProperty Name="KhachHang" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_KhachHang" FromRole="HoaDonThanhToan" ToRole="KhachHang" />
+    <NavigationProperty Name="KhachVangLai" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_KhachVangLai" FromRole="HoaDonThanhToan" ToRole="KhachVangLai" />
+    <NavigationProperty Name="NhanVien" Relationship="FastFoodManagementModel.FK_HoaDonThanhToan_NhanVien" FromRole="HoaDonThanhToan" ToRole="NhanVien" />
+    <NavigationProperty Name="KhuyenMais" Relationship="FastFoodManagementModel.GiamGia1" FromRole="HoaDonThanhToan" ToRole="KhuyenMai" />
+  </EntityType>
+  <Association Name="FK_DONHANG_HOADON1">
+    <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="1" />
+    <End Type="FastFoodManagementModel.DonHang" Role="DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDonThanhToan">
+        <PropertyRef Name="MaHoaDon" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="MaHoaDon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonThanhToan_KhachHang">
+    <End Type="FastFoodManagementModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+    <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKhachHang" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaKhachHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonThanhToan_KhachVangLai">
+    <End Type="FastFoodManagementModel.KhachVangLai" Role="KhachVangLai" Multiplicity="0..1" />
+    <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachVangLai">
+        <PropertyRef Name="MaKhachVangLai" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaKhachVangLai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonThanhToan_NhanVien">
+    <End Type="FastFoodManagementModel.NhanVien" Role="NhanVien" Multiplicity="1" />
+    <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNhanVien" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaNhanVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GiamGia1">
+    <End Type="FastFoodManagementModel.HoaDonThanhToan" Role="HoaDonThanhToan" Multiplicity="*" />
+    <End Type="FastFoodManagementModel.KhuyenMai" Role="KhuyenMai" Multiplicity="*" />
+  </Association>
+  <EntityType Name="ChuDe">
+    <Key>
+      <PropertyRef Name="MaChuDe" />
+    </Key>
+    <Property Name="MaChuDe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenChuDe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MonAns" Relationship="FastFoodManagementModel.FK_MonAn_ChuDe" FromRole="ChuDe" ToRole="MonAn" />
+  </EntityType>
+  <Association Name="FK_MonAn_ChuDe">
+    <End Type="FastFoodManagementModel.ChuDe" Role="ChuDe" Multiplicity="1" />
+    <End Type="FastFoodManagementModel.MonAn" Role="MonAn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChuDe">
+        <PropertyRef Name="MaChuDe" />
+      </Principal>
+      <Dependent Role="MonAn">
+        <PropertyRef Name="MaChuDe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

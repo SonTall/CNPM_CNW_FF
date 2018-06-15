@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4eccd93c694f4836b520402b7b940b06" Name="Diagram1">
+        <EntityTypeShape EntityType="FastFoodManagementModel.DonHang" Width="1.5" PointX="9.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FastFoodManagementModel.KhachHang" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FastFoodManagementModel.KhachVangLai" Width="1.5" PointX="2.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FastFoodManagementModel.KhuyenMai" Width="1.5" PointX="6.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FastFoodManagementModel.MonAn" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FastFoodManagementModel.NhanVien" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FastFoodManagementModel.sysdiagram" Width="1.5" PointX="5.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FastFoodManagementModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="FastFoodManagementModel.FK_DONHANG_MONAN" ManuallyRouted="false" />
+        <AssociationConnector Association="FastFoodManagementModel.FK_NHANVIEN_TAIKHOAN" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FastFoodManagementModel.HoaDonThanhToan" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="FastFoodManagementModel.FK_DONHANG_HOADON1" />
+        <AssociationConnector Association="FastFoodManagementModel.FK_HoaDonThanhToan_KhachHang" />
+        <AssociationConnector Association="FastFoodManagementModel.FK_HoaDonThanhToan_KhachVangLai" />
+        <AssociationConnector Association="FastFoodManagementModel.FK_HoaDonThanhToan_NhanVien" />
+        <AssociationConnector Association="FastFoodManagementModel.GiamGia1" />
+        <EntityTypeShape EntityType="FastFoodManagementModel.ChuDe" Width="1.5" PointX="5.25" PointY="10.875" />
+        <AssociationConnector Association="FastFoodManagementModel.FK_MonAn_ChuDe" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

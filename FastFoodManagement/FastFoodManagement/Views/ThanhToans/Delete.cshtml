@@ -1,0 +1,64 @@
+﻿@model FastFoodManagement.Models.ThanhToan
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ThanhToan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGianThanhToan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianThanhToan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoaDon.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaDon.GhiChu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachHang.TenKhachHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.TenKhachHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachVangLai.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachVangLai.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVien.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.HoTen)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

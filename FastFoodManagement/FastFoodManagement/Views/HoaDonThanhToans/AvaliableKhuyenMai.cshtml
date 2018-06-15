@@ -1,0 +1,10 @@
+﻿
+@model IEnumerable<FastFoodManagement.Models.KhuyenMai>
+
+
+<h2>Danh sach khuyen mai</h2>
+
+@foreach (var item in Model)
+{
+    <p>@Html.DisplayTextFor(m => item.MoTa)</p>
+}

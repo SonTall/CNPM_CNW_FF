@@ -1,0 +1,106 @@
+﻿@*Css cho trang chủ ở trong thư mục content*@
+@*<link href="~/Content/TrangChuCss.css" rel="stylesheet" />*@
+@using PagedList;
+@using PagedList.Mvc;
+@*@model PagedList.PagedList<FastFoodManagement.Models.MonAn>*@
+@model PagedList.IPagedList<FastFoodManagement.Models.MonAn>
+
+<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+
+<link rel="stylesheet" href="~/Content/aside//bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/aside//open-iconic-bootstrap.min.css">
+
+<link rel="stylesheet" href="~/Content/aside//owl.carousel.min.css">
+<link rel="stylesheet" href="~/Content/aside//owl.theme.default.min.css">
+
+<link rel="stylesheet" href="~/Content/aside//icomoon.css">
+<link rel="stylesheet" href="~/Content/aside//animate.css">
+<link rel="stylesheet" href="~/Content/aside/style.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/jquery-3.2.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/main.js"></script>
+
+
+
+@{
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<main role="main" class="probootstrap-main js-probootstrap-main">
+    @*<div class="probootstrap-bar">
+            <a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span class="oi oi-menu"></span></a>
+            <div class="probootstrap-main-site-logo"><a href="index.html">Aside</a></a></div>
+        </div>*@
+
+    <div class="card-columns">
+        @foreach (var item in Model)
+        {
+            <div class="card">
+                @*  @Html.Action("Details", "Home", new { mamonan = item.MaMonAn })) *@
+                <a href="@Url.Action("Details", "MonAns", new { @id=item.MaMonAn })">
+                    <div class="tag">@item.TenMonAn</div>
+                    <img class="card-img-top probootstrap-animate" src="@Url.Content("~/HinhAnh/"+item.HinhAnh)" alt="Card image cap">
+                    <div class="tag">Giá tiền: @String.Format("{0:0,0}", item.DonGia) VNĐ</div>
+                </a>
+                <div id="btn">
+                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaMonAn = item.MaMonAn, @strURL = Request.Url.ToString() }))
+                    {
+                        <input type="submit" style="cursor:pointer" value="Thêm vào giỏ hàng " id="btnGioHang" class="btn btn-success btn-block full-width">
+                    }
+                </div>
+            </div>
+
+            @*<script>
+                    $(".card").click(function () {
+                        alert(id);
+                        window.location.href = '/Home/About/' + id;
+                    });
+                </script>*@
+        }
+
+
+
+
+
+    </div>
+
+
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+
+
+    <style>
+        .MenuTrang li {
+            display: inline;
+            margin: 5px;
+            font-size: 23px;
+        }
+
+        .tag {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        #btn {
+            /*margin-top: inherit;*/
+            background: rgba(0, 0, 0, 0.05);
+            /*position: center;*/
+            background-size: cover;
+        }
+
+            #btn #btnGioHang {
+                background-size: cover;
+            }
+    </style>
+</main>
+
+
+
+
