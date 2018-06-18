@@ -20,6 +20,29 @@ namespace FastFoodManagement.Controllers
             return View(db.ChuDes.ToList());
         }
 
+        public ViewResult MonAnTheoChuDe(int machude = 0)
+        {
+            //Kiểm tra chủ đề tồn tại hay không
+            ChuDe cd = db.ChuDes.SingleOrDefault(n => n.MaChuDe == machude);
+            if (cd == null)
+            {
+                //Response.StatusCode = 404;
+                //return null;
+                List<MonAn> monAns = db.MonAns.OrderBy(n => n.MaMonAn).ToList();
+                ViewBag.TenChuDe = db.ChuDes.ToList();
+                return View(monAns);
+            }
+            //Truy xuất danh sách các quyển sách theo chủ đề
+            List<MonAn> lstMonAn = db.MonAns.Where(n => n.MaChuDe == machude).OrderBy(n => n.MaMonAn).ToList();
+            if (lstMonAn.Count == 0)
+            {
+                ViewBag.Sach = "Không có món ăn nào thuộc chủ đề này!";
+            }
+            //Gán danh sách chủ để
+            ViewBag.TenChuDe = db.ChuDes.ToList();
+            return View(lstMonAn);
+        }
+
         // GET: ChuDes/Details/5
         public ActionResult Details(int? id)
         {

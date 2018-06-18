@@ -50,10 +50,10 @@ namespace FastFoodManagement.Controllers
             }
         }
         //Cập nhật giỏ hàng 
-        public ActionResult CapNhatGioHang(int iMaSP, FormCollection f)
+        public ActionResult CapNhatGioHang(int id, FormCollection f)
         {
             //Kiểm tra masp
-            MonAn monAn = db.MonAns.SingleOrDefault(n => n.MaMonAn == iMaSP);
+            MonAn monAn = db.MonAns.SingleOrDefault(n => n.MaMonAn == id);
             //Nếu get sai masp thì sẽ trả về trang lỗi 404
             if (monAn == null)
             {
@@ -63,7 +63,7 @@ namespace FastFoodManagement.Controllers
             //Lấy giỏ hàng ra từ session
             List<GioHang> lstGioHang = LayGioHang();
             //Kiểm tra sp có tồn tại trong session["GioHang"]
-            GioHang sanpham = lstGioHang.SingleOrDefault(n => n.iMaMonAn == iMaSP);
+            GioHang sanpham = lstGioHang.SingleOrDefault(n => n.iMaMonAn == id);
             //Nếu mà tồn tại thì chúng ta cho sửa số lượng
             if (sanpham != null)
             {
@@ -73,10 +73,10 @@ namespace FastFoodManagement.Controllers
             return RedirectToAction("GioHang");
         }
         //Xóa giỏ hàng
-        public ActionResult XoaGioHang(int iMaSP)
+        public ActionResult XoaGioHang(int id)
         {
             //Kiểm tra masp
-            MonAn monAn = db.MonAns.SingleOrDefault(n => n.MaMonAn == iMaSP);
+            MonAn monAn = db.MonAns.SingleOrDefault(n => n.MaMonAn == id);
             //Nếu get sai masp thì sẽ trả về trang lỗi 404
             if (monAn == null)
             {
@@ -85,11 +85,11 @@ namespace FastFoodManagement.Controllers
             }
             //Lấy giỏ hàng ra từ session
             List<GioHang> lstGioHang = LayGioHang();
-            GioHang sanpham = lstGioHang.SingleOrDefault(n => n.iMaMonAn == iMaSP);
+            GioHang sanpham = lstGioHang.SingleOrDefault(n => n.iMaMonAn == id);
             //Nếu mà tồn tại thì chúng ta cho sửa số lượng
             if (sanpham != null)
             {
-                lstGioHang.RemoveAll(n => n.iMaMonAn == iMaSP);
+                lstGioHang.RemoveAll(n => n.iMaMonAn == id);
 
             }
             if (lstGioHang.Count == 0)
@@ -145,10 +145,10 @@ namespace FastFoodManagement.Controllers
         //Xây dựng 1 view cho người dùng chỉnh sửa giỏ hàng
         public ActionResult SuaGioHang()
         {
-            //if (Session["GioHang"] == null)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (Session["GioHang"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             List<GioHang> lstGioHang = LayGioHang();
             return View(lstGioHang);
 

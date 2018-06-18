@@ -24,11 +24,11 @@
 <body>
 
     <aside class="probootstrap-aside js-probootstrap-aside">
-        <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
+        @*<a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>*@
         <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
 
-            <a href="index.html" class="mb-2 d-block probootstrap-logo">Aside</a>
-            <p class="mb-0">Another free html5 bootstrap 4 template by <a href="https://uicookies.com/" target="_blank">uiCookies</a></p>
+            <a href="#" class="mb-2 d-block probootstrap-logo">FastFood</a>
+            @*<p class="mb-0">Another free html5 bootstrap 4 template by <a href="https://uicookies.com/" target="_blank">uiCookies</a></p>*@
         </div>
         <div class="probootstrap-overflow">
             <nav class="probootstrap-nav">
@@ -41,9 +41,10 @@
                         <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="#">Đăng nhập</a></li>*@
                     <li class="probootstrap-animate" data-animate-effect="fadeInLeft"> @Html.ActionLink("Trang chủ", "Index", "Home") </li>
                     <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Giỏ hàng ", "GioHang", "GioHang") @Html.Action("GioHangPartial", "GioHang")</li>
-                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Thực đơn", "Index", "Home")</li>
-                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Thông tin", "Index", "Home")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Thực đơn", "MonAnTheoChuDe", "ChuDes")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Thông tin", "About", "Home")</li>
                     <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Đăng nhập", "Index", "Home")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Quản trị", "Index", "Home")</li>
                 </ul>
             </nav>
             <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
@@ -86,7 +87,7 @@
     <script src="~/Scripts/aside/imagesloaded.pkgd.min.js"></script>
     <script src="~/Scripts/aside/main.js"></script>
 
-  @*  <script src="~/Scripts/bootstrap.js"></script>*@
+    @*  <script src="~/Scripts/bootstrap.js"></script>*@
 
 </body>
 </html>

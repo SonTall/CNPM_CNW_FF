@@ -5,7 +5,7 @@
 @*@model PagedList.PagedList<FastFoodManagement.Models.MonAn>*@
 @model PagedList.IPagedList<FastFoodManagement.Models.MonAn>
 
-<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+@*<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 
 <link rel="stylesheet" href="~/Content/aside//bootstrap.min.css">
 <link rel="stylesheet" href="~/Content/aside//open-iconic-bootstrap.min.css">
@@ -24,7 +24,7 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.waypoints.min.js"></script>
 <script src="js/imagesloaded.pkgd.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js"></script>*@
 
 
 
@@ -34,10 +34,13 @@
 }
 
 <main role="main" class="probootstrap-main js-probootstrap-main">
-    @*<div class="probootstrap-bar">
-            <a href="#" class="probootstrap-toggle js-probootstrap-toggle"><span class="oi oi-menu"></span></a>
-            <div class="probootstrap-main-site-logo"><a href="index.html">Aside</a></a></div>
-        </div>*@
+    @using (Html.BeginForm("Menu", "Home", FormMethod.Get))
+    {
+        <div class="form-group form-inline">
+            <input type="text" class="form-control" placeholder="Nhập tên món ăn:" name="tenmon">
+            <button type="submit" class="btn btn-success">Tìm kiếm</button>
+        </div>
+    }
 
     <div class="card-columns">
         @foreach (var item in Model)

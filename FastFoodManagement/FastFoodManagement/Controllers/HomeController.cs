@@ -2,6 +2,7 @@
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -35,9 +36,31 @@ namespace FastFoodManagement.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
+        }
+
+        public ActionResult Menu(int? machude, string tenmon)
+        {
+            if (tenmon == null && machude == null)
+            {
+                ViewBag.TenChuDe = db.ChuDes.SingleOrDefault(n => n.MaChuDe == 1);
+                return View(db.MonAns.OrderBy(n => n.MaMonAn).ToList());
+            }
+            else if (tenmon == null && machude != null)
+            {
+                ViewBag.TenChuDe = db.ChuDes.SingleOrDefault(n => n.MaChuDe == machude);
+                return View(db.MonAns.Single(n => n.MaChuDe == machude));
+            }
+            else if (tenmon != null && machude == null)
+            {
+                ViewBag.TenChuDe = db.ChuDes.SingleOrDefault(n => n.MaChuDe == 1);
+                return View(db.MonAns.SqlQuery("select * from MonAn where TenMonAn like '%'+@ten+'%'", new SqlParameter("@ten", tenmon)).ToList());
+            }
+            else
+            {
+                ViewBag.TenChuDe = db.ChuDes.SingleOrDefault(n => n.MaChuDe == machude);
+                return View(db.MonAns.SqlQuery("select * from MonAn where TenMonAn like '%'+@ten+'%' and MaChuDe = @machude", new SqlParameter("@ten", tenmon), new SqlParameter("@machude", machude)));
+            }
         }
 
         public ActionResult Contact()
