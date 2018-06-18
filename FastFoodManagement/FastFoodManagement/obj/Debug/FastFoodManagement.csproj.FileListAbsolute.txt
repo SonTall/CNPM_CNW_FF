@@ -294,4 +294,3 @@ D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\obj\De
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.IO.FileSystem.Primitives.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Collections.Immutable.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.IO.FileSystem.dll
-D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\obj\Debug\FastFoodManagement.csprojResolveAssemblyReference.cache

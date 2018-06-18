@@ -2,19 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
 }
-
-<h2>Index</h2>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<div class="one">one</div>
-<script>
-    $(".one").click(function () {
-        alert("hey!");
-    });
-</script>
-
-
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
