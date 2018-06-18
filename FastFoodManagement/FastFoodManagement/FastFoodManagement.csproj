@@ -335,11 +335,6 @@
     <Content Include="Views\DonHangs\Details.cshtml" />
     <Content Include="Views\DonHangs\Edit.cshtml" />
     <Content Include="Views\DonHangs\Index.cshtml" />
-    <Content Include="Views\HoaDons\Create.cshtml" />
-    <Content Include="Views\HoaDons\Delete.cshtml" />
-    <Content Include="Views\HoaDons\Details.cshtml" />
-    <Content Include="Views\HoaDons\Edit.cshtml" />
-    <Content Include="Views\HoaDons\Index.cshtml" />
     <Content Include="Views\KhachHangs\Create.cshtml" />
     <Content Include="Views\KhachHangs\Delete.cshtml" />
     <Content Include="Views\KhachHangs\Details.cshtml" />
