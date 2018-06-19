@@ -64,26 +64,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HoaDonThanhToans">
-      <EntityTypeMapping TypeName="FastFoodManagementModel.HoaDonThanhToan">
-        <MappingFragment StoreEntitySet="HoaDonThanhToan">
-          <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
-          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
-          <ScalarProperty Name="MaKhachVangLai" ColumnName="MaKhachVangLai" />
-          <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
-          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
-          <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="GiamGia1" TypeName="FastFoodManagementModel.GiamGia1" StoreEntitySet="GiamGia">
-      <EndProperty Name="KhuyenMai">
-        <ScalarProperty Name="MaKhuyenMai" ColumnName="MaKhuyenMai" />
-      </EndProperty>
-      <EndProperty Name="HoaDonThanhToan">
-        <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
-      </EndProperty>
-    </AssociationSetMapping>
     <EntitySetMapping Name="ChuDes">
       <EntityTypeMapping TypeName="FastFoodManagementModel.ChuDe">
         <MappingFragment StoreEntitySet="ChuDe">
@@ -115,6 +95,18 @@
           <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
           <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
           <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoaDonThanhToans">
+      <EntityTypeMapping TypeName="FastFoodManagementModel.HoaDonThanhToan">
+        <MappingFragment StoreEntitySet="HoaDonThanhToan">
+          <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="MaKhachVangLai" ColumnName="MaKhachVangLai" />
+          <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+          <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+          <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

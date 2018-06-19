@@ -14,19 +14,10 @@ namespace FastFoodManagement.Models
     
     public partial class KhuyenMai
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KhuyenMai()
-        {
-            this.HoaDonThanhToans = new HashSet<HoaDonThanhToan>();
-        }
-    
         public int MaKhuyenMai { get; set; }
         public string MoTa { get; set; }
         public Nullable<System.DateTime> ThoiGianBatDau { get; set; }
         public Nullable<System.DateTime> ThoiGianKetThuc { get; set; }
         public Nullable<double> GiaTri { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HoaDonThanhToan> HoaDonThanhToans { get; set; }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using FastFoodManagement.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -56,20 +58,39 @@ namespace FastFoodManagement.Controllers
         [HttpGet]
         public ActionResult TaiKhoan()
         {
+            TaiKhoan tk = Session["TaiKhoan"] as TaiKhoan;
+            int id = tk.MaTaiKhoan;
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan == null)
+            {
+                return HttpNotFound();
+            }
+            return View(taiKhoan);
+        }
+        [HttpPost]
+        public ActionResult TaiKhoan([Bind(Include = "MaTaiKhoan,LoaiTaiKhoan,TenTaiKhoan,MatKhau")] TaiKhoan tk)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tk).State = EntityState.Modified;
+                db.SaveChanges();
+                //return RedirectToAction("I);
+            }
             return View();
         }
-        //[HttpPost]
-        //public ActionResult TaiKhoan()
-        //{
-        //    return View();
-        //}
+
+        public ActionResult DangXuat()
+        {
+            Session["TaiKhoan"] = null;
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpGet]
         public ActionResult DangNhap()
         {
             if (Session["TaiKhoan"] != null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("TaiKhoan");
             }
             return View();
         }

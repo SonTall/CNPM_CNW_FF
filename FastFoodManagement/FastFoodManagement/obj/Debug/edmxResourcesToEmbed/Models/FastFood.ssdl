@@ -17,20 +17,12 @@
     <Property Name="MaMonAn" Type="int" Nullable="false" />
     <Property Name="SoLuong" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="GiamGia">
-    <Key>
-      <PropertyRef Name="MaKhuyenMai" />
-      <PropertyRef Name="MaHoaDon" />
-    </Key>
-    <Property Name="MaKhuyenMai" Type="int" Nullable="false" />
-    <Property Name="MaHoaDon" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="HoaDonThanhToan">
     <Key>
       <PropertyRef Name="MaHoaDon" />
     </Key>
     <Property Name="MaHoaDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="MaNhanVien" Type="int" Nullable="false" />
+    <Property Name="MaNhanVien" Type="int" />
     <Property Name="MaKhachHang" Type="int" />
     <Property Name="MaKhachVangLai" Type="int" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
@@ -132,18 +124,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HOADON_KHUYENMAI_KHUYENMAI">
-    <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="1" />
-    <End Role="GiamGia" Type="Self.GiamGia" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="KhuyenMai">
-        <PropertyRef Name="MaKhuyenMai" />
-      </Principal>
-      <Dependent Role="GiamGia">
-        <PropertyRef Name="MaKhuyenMai" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_HoaDonThanhToan_KhachHang">
     <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
     <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
@@ -169,7 +149,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_HoaDonThanhToan_NhanVien">
-    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
     <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NhanVien">
@@ -219,7 +199,6 @@
   <EntityContainer Name="FastFoodManagementModelStoreContainer">
     <EntitySet Name="ChuDe" EntityType="Self.ChuDe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="GiamGia" EntityType="Self.GiamGia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HoaDonThanhToan" EntityType="Self.HoaDonThanhToan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KhachVangLai" EntityType="Self.KhachVangLai" Schema="dbo" store:Type="Tables" />
@@ -235,10 +214,6 @@
     <AssociationSet Name="FK_DONHANG_MONAN" Association="Self.FK_DONHANG_MONAN">
       <End Role="MonAn" EntitySet="MonAn" />
       <End Role="DonHang" EntitySet="DonHang" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HOADON_KHUYENMAI_KHUYENMAI" Association="Self.FK_HOADON_KHUYENMAI_KHUYENMAI">
-      <End Role="KhuyenMai" EntitySet="KhuyenMai" />
-      <End Role="GiamGia" EntitySet="GiamGia" />
     </AssociationSet>
     <AssociationSet Name="FK_HoaDonThanhToan_KhachHang" Association="Self.FK_HoaDonThanhToan_KhachHang">
       <End Role="KhachHang" EntitySet="KhachHang" />

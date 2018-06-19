@@ -38,7 +38,7 @@
                         <input type="submit"style="cursor:pointer;" id="btnCapNhat" value="Cập nhật" class="btn btn-sm btn-success ">
                         <br />
                         @*Xóa giỏ hàng gọi về Action XoaGioHang*@
-                        @Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.iMaMonAn }, htmlAttributes: new { @class = "btn btn-danger", onclick = "return confirm('Bạn chắc chắn muốn xóa món ăn này?');" })
+                        @Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.iMaMonAn }, htmlAttributes: new { @class = "btn btn-success", onclick = "return confirm('Bạn chắc chắn muốn xóa món ăn này?');" })
                     </td>
                 }
 

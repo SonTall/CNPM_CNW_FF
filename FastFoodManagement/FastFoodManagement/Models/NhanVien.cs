@@ -17,8 +17,8 @@ namespace FastFoodManagement.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhanVien()
         {
-            this.HoaDonThanhToans = new HashSet<HoaDonThanhToan>();
             this.TaiKhoans = new HashSet<TaiKhoan>();
+            this.HoaDonThanhToans = new HashSet<HoaDonThanhToan>();
         }
     
         public int MaNhanVien { get; set; }
@@ -27,8 +27,8 @@ namespace FastFoodManagement.Models
         public string SoDienThoai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HoaDonThanhToan> HoaDonThanhToans { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HoaDonThanhToan> HoaDonThanhToans { get; set; }
     }
 }

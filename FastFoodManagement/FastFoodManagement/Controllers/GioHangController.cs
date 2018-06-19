@@ -154,5 +154,64 @@ namespace FastFoodManagement.Controllers
 
         }
         #endregion
+
+        #region Đặt hàng
+        [HttpPost]
+        public ActionResult DatHang()
+        {
+            //Kiểm tra đăng đăng nhập
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "Login");
+            }
+            //Kiểm tra giỏ hàng
+            if (Session["GioHang"] == null)
+            {
+                RedirectToAction("Index", "Home");
+            }
+            //Thêm đơn hàng
+            DonHang ddh = new DonHang();
+            HoaDonThanhToan hdtt = new HoaDonThanhToan();
+            TaiKhoan tk = Session["TaiKhoan"] as TaiKhoan;
+            List<GioHang> gh = LayGioHang();
+            if(tk.MaKhachHang == null)
+            {
+                hdtt.MaKhachHang = null;
+                // chua lam khach vang lai
+                hdtt.MaKhachVangLai = null;
+            }
+            else
+            {
+                hdtt.MaKhachHang = tk.MaKhachHang;
+                hdtt.MaKhachVangLai = null;
+            }
+            hdtt.ThoiGian = DateTime.Now;
+            hdtt.MaNhanVien = null;
+            hdtt.GhiChu = null;
+            db.HoaDonThanhToans.Add(hdtt);
+
+            //var tmp = db.HoaDonThanhToans.Single(n => n.ThoiGian == hdtt.ThoiGian && n.MaKhachHang == tk.MaKhachHang);
+            ddh.MaHoaDon = hdtt.MaHoaDon;
+            //ddh = tk.MaKhachHang;
+            //ddh.NgayDat = DateTime.Now;
+            //db.DonHangs.Add(ddh);
+            //db.SaveChanges();
+            foreach (var item in gh)
+            {
+                //ChiTietDonHang ctDH = new ChiTietDonHang();
+                //ctDH.MaDonHang = ddh.MaDonHang;
+                //ctDH.MaSach = item.iMaSach;
+                //ctDH.SoLuong = item.iSoLuong;
+                //ctDH.DonGia = (decimal)item.dDonGia;
+                //db.ChiTietDonHangs.Add(ctDH);
+                ddh.MaMonAn = item.iMaMonAn;
+                ddh.SoLuong = item.iSoLuong;
+                db.DonHangs.Add(ddh);
+            }
+            db.SaveChanges();
+            //db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+        #endregion
     }
 }
