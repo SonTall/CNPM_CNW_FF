@@ -1,74 +1,67 @@
 ﻿@model FastFoodManagement.Models.TaiKhoan
 
 @{
-    Layout = null;
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Details</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>TaiKhoan</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.TenTaiKhoan)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.TenTaiKhoan)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.MatKhau)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.MatKhau)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.ThoiGianTao)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.ThoiGianTao)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.LoaiTaiKhoan)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.LoaiTaiKhoan)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.HinhAnh)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.HinhAnh)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.NhanVien.HoTen)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.NhanVien.HoTen)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.MaTaiKhoan }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+<div>
+    <h4>TaiKhoan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTaiKhoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTaiKhoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatKhau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGianTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianTao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiTaiKhoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiTaiKhoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVien.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.HoTen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaNhanVien }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

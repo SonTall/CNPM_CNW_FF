@@ -14,7 +14,7 @@ namespace FastFoodManagement.Models
     
     public partial class TaiKhoan
     {
-        public int MaTaiKhoan { get; set; }
+        public int MaNhanVien { get; set; }
         public string TenTaiKhoan { get; set; }
         public string MatKhau { get; set; }
         public Nullable<System.DateTime> ThoiGianTao { get; set; }

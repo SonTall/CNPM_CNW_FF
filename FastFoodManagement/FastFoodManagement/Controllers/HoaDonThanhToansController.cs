@@ -14,12 +14,6 @@ namespace FastFoodManagement.Controllers
     {
         private FastFoodManagementEntities1 db = new FastFoodManagementEntities1();
 
-        public PartialViewResult AvaliableKhuyenMai()
-        {
-            var khuyenmai = db.KhuyenMais.ToList();
-            return PartialView( khuyenmai);
-        }
-
         // GET: HoaDonThanhToans
         public ActionResult Index()
         {
@@ -45,9 +39,6 @@ namespace FastFoodManagement.Controllers
         // GET: HoaDonThanhToans/Create
         public ActionResult Create()
         {
-            var khuyenmai = db.KhuyenMais.ToList();
-
-            ViewBag.KhuyenMais = new SelectList(khuyenmai, "MaKhuyenMai", "MoTa");
             ViewBag.MaKhachHang = new SelectList(db.KhachHangs, "MaKhachHang", "TenKhachHang");
             ViewBag.MaKhachVangLai = new SelectList(db.KhachVangLais, "MaKhachVangLai", "HoTen");
             ViewBag.MaNhanVien = new SelectList(db.NhanViens, "MaNhanVien", "HoTen");
@@ -59,14 +50,10 @@ namespace FastFoodManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaHoaDon,MaNhanVien,MaKhachHang,MaKhachVangLai,GhiChu,ThoiGian")] HoaDonThanhToan hoaDonThanhToan, int KhuyenMais)
+        public ActionResult Create([Bind(Include = "MaHoaDon,MaNhanVien,MaKhachHang,MaKhachVangLai,GhiChu,ThoiGian")] HoaDonThanhToan hoaDonThanhToan)
         {
             if (ModelState.IsValid)
             {
-                //var km = ViewBag.KhuyenMai;
-                //hoaDonThanhToan.KhuyenMais = km;
-                hoaDonThanhToan.KhuyenMais = db.KhuyenMais.Where(v => v.MaKhuyenMai == KhuyenMais).ToList();
-
                 db.HoaDonThanhToans.Add(hoaDonThanhToan);
                 db.SaveChanges();
                 return RedirectToAction("Index");

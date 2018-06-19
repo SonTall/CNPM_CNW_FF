@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
 }
 
 <h2>Details</h2>
@@ -11,14 +12,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MonAn.TenMonAn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MonAn.TenMonAn)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.SoLuong)
         </dt>
 
@@ -27,20 +20,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HoaDonThanhToan)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HoaDonThanhToan)
-        </dd>
-
-        @*<dt>
             @Html.DisplayNameFor(model => model.MonAn.TenMonAn)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.MonAn.TenMonAn)
-        </dd>*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoaDonThanhToan.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaDonThanhToan.GhiChu)
+        </dd>
 
     </dl>
 </div>

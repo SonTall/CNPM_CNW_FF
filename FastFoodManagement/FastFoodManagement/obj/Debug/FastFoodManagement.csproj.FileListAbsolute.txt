@@ -225,10 +225,8 @@ D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\ro
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.IO.Compression.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.IO.Pipes.dll
-D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Reflection.Metadata.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Security.AccessControl.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Security.Claims.dll
-D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Security.Cryptography.Algorithms.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Security.Cryptography.Encoding.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Security.Cryptography.Primitives.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
@@ -292,5 +290,7 @@ D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\obj\De
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\obj\Debug\FastFoodManagement.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\obj\Debug\FastFoodManagement.pdb
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Reflection.Metadata.dll
+D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Security.Cryptography.Algorithms.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.Collections.Immutable.dll
 D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\bin\roslyn\System.IO.FileSystem.dll

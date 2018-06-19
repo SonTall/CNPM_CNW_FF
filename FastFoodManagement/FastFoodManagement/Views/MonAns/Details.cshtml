@@ -1,59 +1,75 @@
 ﻿@model FastFoodManagement.Models.MonAn
-
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
 }
 
-<h2>Details</h2>
+<main role="main" class="probootstrap-main js-probootstrap-main">
+    @Html.ActionLink("Back to List", "Index", "Home")
+    <div class="container-fluid">
+        <div class="row mt-0">
+            <div class="col-xl-8 col-lg-12" style="display:inline;">
+                <div class="mb-5" style="float:left;  padding-top: 20px;"><img src="@Url.Content("~/HinhAnh/"+@Model.HinhAnh)" alt="Card image cap" style="width:500px; height:500px; position: center;"></div>
 
-<div>
-    <h4>MonAn</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenMonAn)
-        </dt>
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 col-lg-12 " style="float:left; width: 700px;">
+                        <h1 class="mb-5">@Model.TenMonAn</h1>
+                        <p>@Model.GhiChu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenMonAn)
-        </dd>
+        <div class="tag" style="padding-top: 10px;">Giá tiền: @String.Format("{0:0,0}", @Model.DonGia) VNĐ</div>
+        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaMonAn = @Model.MaMonAn, @strURL = Request.Url.ToString() }))
+        {
+            <input type="submit" style="cursor:pointer" value="Thêm vào giỏ hàng " id="btnGioHang" class="btn btn-success">
+        }
+        <!-- END row -->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </dt>
+        <section class="probootstrap-section">
+            <div class="container-fluid">
+                <div class="row mb-5 justify-content-center">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-8 mx-auto">
+                                <p class="h1 mb-5 mt-0">Các món tương tư</p>
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonGia)
-        </dd>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <div class="owl-carousel probootstrap-owl">
+                            @foreach (var item in @ViewBag.ListSame)
+                            {
+                                <div class="item">
+                                    <img src="@Url.Content("~/HinhAnh/" + item.HinhAnh)" class="img-fluid" alt="">
+                                    <div class="p-4 border border-top-0">
+                                        <h4>@item.TenMonAn</h4>
+                                        <p>@item.GhiChu</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HinhAnh)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GhiChu)
-        </dt>
+            </div>
+        </section>
+        <!-- END section -->
 
-        <dd>
-            @Html.DisplayFor(model => model.GhiChu)
-        </dd>
+    </div>
+</main>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ChuDe.TenChuDe)
-        </dt>
+<script src="js/jquery-3.2.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
 
-        <dd>
-            @Html.DisplayFor(model => model.ChuDe.TenChuDe)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaMonAn }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<script src="js/main.js"></script>

@@ -39,7 +39,7 @@ namespace FastFoodManagement.Controllers
         // GET: NhanViens/Create
         public ActionResult Create()
         {
-            ViewBag.MaNhanVien = new SelectList(db.TaiKhoans, "MaTaiKhoan", "TenTaiKhoan");
+            ViewBag.MaNhanVien = new SelectList(db.TaiKhoans, "MaNhanVien", "TenTaiKhoan");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace FastFoodManagement.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaNhanVien = new SelectList(db.TaiKhoans, "MaTaiKhoan", "TenTaiKhoan", nhanVien.MaNhanVien);
+            ViewBag.MaNhanVien = new SelectList(db.TaiKhoans, "MaNhanVien", "TenTaiKhoan", nhanVien.MaNhanVien);
             return View(nhanVien);
         }
 
@@ -73,7 +73,7 @@ namespace FastFoodManagement.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MaNhanVien = new SelectList(db.TaiKhoans, "MaTaiKhoan", "TenTaiKhoan", nhanVien.MaNhanVien);
+            ViewBag.MaNhanVien = new SelectList(db.TaiKhoans, "MaNhanVien", "TenTaiKhoan", nhanVien.MaNhanVien);
             return View(nhanVien);
         }
 
@@ -90,7 +90,7 @@ namespace FastFoodManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaNhanVien = new SelectList(db.TaiKhoans, "MaTaiKhoan", "TenTaiKhoan", nhanVien.MaNhanVien);
+            ViewBag.MaNhanVien = new SelectList(db.TaiKhoans, "MaNhanVien", "TenTaiKhoan", nhanVien.MaNhanVien);
             return View(nhanVien);
         }
 

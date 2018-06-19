@@ -25,8 +25,8 @@ namespace FastFoodManagement.Models
         public Nullable<System.DateTime> NgaySinh { get; set; }
         public string SoDienThoai { get; set; }
     
-        public virtual TaiKhoan TaiKhoan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDonThanhToan> HoaDonThanhToans { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

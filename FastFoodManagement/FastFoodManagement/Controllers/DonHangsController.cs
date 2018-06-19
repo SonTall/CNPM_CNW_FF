@@ -17,18 +17,18 @@ namespace FastFoodManagement.Controllers
         // GET: DonHangs
         public ActionResult Index()
         {
-            var donHangs = db.DonHangs.Include(d => d.HoaDonThanhToan).Include(d => d.MonAn);
+            var donHangs = db.DonHangs.Include(d => d.MonAn).Include(d => d.HoaDonThanhToan);
             return View(donHangs.ToList());
         }
 
         // GET: DonHangs/Details/5
-        public ActionResult Details(int? mahoadon, int? mamonan)
+        public ActionResult Details(int? id)
         {
-            if (mahoadon == null || mamonan == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DonHang donHang = db.DonHangs.FirstOrDefault(v => v.MaHoaDon == mahoadon.Value && v.MaMonAn == mamonan.Value);
+            DonHang donHang = db.DonHangs.Find(id);
             if (donHang == null)
             {
                 return HttpNotFound();
@@ -39,8 +39,8 @@ namespace FastFoodManagement.Controllers
         // GET: DonHangs/Create
         public ActionResult Create()
         {
-            ViewBag.MaHoaDon = new SelectList(db.HoaDonThanhToans, "MaHoaDon", "GhiChu");
             ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn");
+            ViewBag.MaHoaDon = new SelectList(db.HoaDonThanhToans, "MaHoaDon", "GhiChu");
             return View();
         }
 
@@ -58,8 +58,8 @@ namespace FastFoodManagement.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaHoaDon = new SelectList(db.HoaDonThanhToans, "MaHoaDon", "GhiChu", donHang.MaHoaDon);
             ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn", donHang.MaMonAn);
+            ViewBag.MaHoaDon = new SelectList(db.HoaDonThanhToans, "MaHoaDon", "GhiChu", donHang.MaHoaDon);
             return View(donHang);
         }
 
@@ -75,8 +75,8 @@ namespace FastFoodManagement.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MaHoaDon = new SelectList(db.HoaDonThanhToans, "MaHoaDon", "GhiChu", donHang.MaHoaDon);
             ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn", donHang.MaMonAn);
+            ViewBag.MaHoaDon = new SelectList(db.HoaDonThanhToans, "MaHoaDon", "GhiChu", donHang.MaHoaDon);
             return View(donHang);
         }
 
@@ -93,8 +93,8 @@ namespace FastFoodManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaHoaDon = new SelectList(db.HoaDonThanhToans, "MaHoaDon", "GhiChu", donHang.MaHoaDon);
             ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn", donHang.MaMonAn);
+            ViewBag.MaHoaDon = new SelectList(db.HoaDonThanhToans, "MaHoaDon", "GhiChu", donHang.MaHoaDon);
             return View(donHang);
         }
 

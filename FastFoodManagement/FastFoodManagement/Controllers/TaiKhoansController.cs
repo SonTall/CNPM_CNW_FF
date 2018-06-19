@@ -39,7 +39,7 @@ namespace FastFoodManagement.Controllers
         // GET: TaiKhoans/Create
         public ActionResult Create()
         {
-            ViewBag.MaTaiKhoan = new SelectList(db.NhanViens, "MaNhanVien", "HoTen");
+            ViewBag.MaNhanVien = new SelectList(db.NhanViens, "MaNhanVien", "HoTen");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace FastFoodManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaTaiKhoan,TenTaiKhoan,MatKhau,ThoiGianTao,LoaiTaiKhoan,HinhAnh")] TaiKhoan taiKhoan)
+        public ActionResult Create([Bind(Include = "MaNhanVien,TenTaiKhoan,MatKhau,ThoiGianTao,LoaiTaiKhoan,HinhAnh")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace FastFoodManagement.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaTaiKhoan = new SelectList(db.NhanViens, "MaNhanVien", "HoTen", taiKhoan.MaTaiKhoan);
+            ViewBag.MaNhanVien = new SelectList(db.NhanViens, "MaNhanVien", "HoTen", taiKhoan.MaNhanVien);
             return View(taiKhoan);
         }
 
@@ -73,7 +73,7 @@ namespace FastFoodManagement.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MaTaiKhoan = new SelectList(db.NhanViens, "MaNhanVien", "HoTen", taiKhoan.MaTaiKhoan);
+            ViewBag.MaNhanVien = new SelectList(db.NhanViens, "MaNhanVien", "HoTen", taiKhoan.MaNhanVien);
             return View(taiKhoan);
         }
 
@@ -82,7 +82,7 @@ namespace FastFoodManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaTaiKhoan,TenTaiKhoan,MatKhau,ThoiGianTao,LoaiTaiKhoan,HinhAnh")] TaiKhoan taiKhoan)
+        public ActionResult Edit([Bind(Include = "MaNhanVien,TenTaiKhoan,MatKhau,ThoiGianTao,LoaiTaiKhoan,HinhAnh")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace FastFoodManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaTaiKhoan = new SelectList(db.NhanViens, "MaNhanVien", "HoTen", taiKhoan.MaTaiKhoan);
+            ViewBag.MaNhanVien = new SelectList(db.NhanViens, "MaNhanVien", "HoTen", taiKhoan.MaNhanVien);
             return View(taiKhoan);
         }
 

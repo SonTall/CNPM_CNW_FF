@@ -16,10 +16,10 @@
             @Html.DisplayNameFor(model => model.SoLuong)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoaDonThanhToan.GhiChu)
+            @Html.DisplayNameFor(model => model.MonAn.TenMonAn)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MonAn.TenMonAn)
+            @Html.DisplayNameFor(model => model.HoaDonThanhToan.GhiChu)
         </th>
         <th></th>
     </tr>
@@ -30,15 +30,15 @@
             @Html.DisplayFor(modelItem => item.SoLuong)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HoaDonThanhToan.GhiChu)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.MonAn.TenMonAn)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { mahoadon = item.MaHoaDon, mamonan = item.MaMonAn/* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { mahoadon = item.MaHoaDon, mamonan = item.MaMonAn/* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { mahoadon = item.MaHoaDon, mamonan = item.MaMonAn/* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.HoaDonThanhToan.GhiChu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

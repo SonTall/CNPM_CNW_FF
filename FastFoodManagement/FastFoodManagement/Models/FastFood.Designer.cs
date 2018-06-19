@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Dev\Desktop\GIT_FF\CNPM_CNW_FF\FastFoodManagement\FastFoodManagement\Models\FastFood.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\SonCao\GIT_FastFood\FastFood_MVC\FastFoodManagement\FastFoodManagement\Models\FastFood.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
