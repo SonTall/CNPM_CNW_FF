@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastFoodManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,17 @@ namespace FastFoodManagement.Controllers
         // GET: Admins
         public ActionResult Index()
         {
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "Login");
+            }
+            TaiKhoan check = Session["TaiKhoan"] as TaiKhoan;
+            if (check.LoaiTaiKhoan != 0)
+            {
+                ViewBag.ThongBao = "Tài khoản của bạn không được phép truy cập!";
+                TempData["msg"] = "<script>alert('Tài khoản của bạn không được phép truy cập!');</script>";
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 

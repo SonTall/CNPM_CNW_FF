@@ -1,82 +1,51 @@
 ﻿@model FastFoodManagement.Models.KhachHang
 
 @{
+    ViewBag.Title = "Details";
     Layout = "~/Views/Layout/AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Details</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>KhachHang</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.TenKhachHang)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.TenKhachHang)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.DiaChi)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DiaChi)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.SoDienThoai)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.SoDienThoai)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.TenTaiKhoan)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.TenTaiKhoan)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.MatKhau)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.MatKhau)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.HinhAnh)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.HinhAnh)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.MaKhachHang }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+<div>
+    <h4>KhachHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKhachHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKhachHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaKhachHang }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

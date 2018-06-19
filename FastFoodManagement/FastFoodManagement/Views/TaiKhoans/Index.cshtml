@@ -28,6 +28,9 @@
             @Html.DisplayNameFor(model => model.HinhAnh)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.KhachHang.TenKhachHang)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.NhanVien.HoTen)
         </th>
         <th></th>
@@ -51,12 +54,15 @@
             @Html.DisplayFor(modelItem => item.HinhAnh)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.KhachHang.TenKhachHang)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaNhanVien }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaNhanVien }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaNhanVien })
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaTaiKhoan }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaTaiKhoan }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaTaiKhoan })
         </td>
     </tr>
 }

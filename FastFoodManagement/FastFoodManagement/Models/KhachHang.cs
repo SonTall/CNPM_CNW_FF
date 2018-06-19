@@ -18,6 +18,7 @@ namespace FastFoodManagement.Models
         public KhachHang()
         {
             this.HoaDonThanhToans = new HashSet<HoaDonThanhToan>();
+            this.TaiKhoans = new HashSet<TaiKhoan>();
         }
     
         public int MaKhachHang { get; set; }
@@ -25,11 +26,10 @@ namespace FastFoodManagement.Models
         public string DiaChi { get; set; }
         public string SoDienThoai { get; set; }
         public string Email { get; set; }
-        public string TenTaiKhoan { get; set; }
-        public string MatKhau { get; set; }
-        public string HinhAnh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDonThanhToan> HoaDonThanhToans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
     }
 }

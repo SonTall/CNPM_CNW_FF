@@ -52,6 +52,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.KhachHang.TenKhachHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.TenKhachHang)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.NhanVien.HoTen)
         </dt>
 
@@ -62,6 +70,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaNhanVien }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaTaiKhoan }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

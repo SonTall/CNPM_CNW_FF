@@ -18,6 +18,7 @@ namespace FastFoodManagement.Models
         public NhanVien()
         {
             this.HoaDonThanhToans = new HashSet<HoaDonThanhToan>();
+            this.TaiKhoans = new HashSet<TaiKhoan>();
         }
     
         public int MaNhanVien { get; set; }
@@ -27,6 +28,7 @@ namespace FastFoodManagement.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDonThanhToan> HoaDonThanhToans { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
     }
 }

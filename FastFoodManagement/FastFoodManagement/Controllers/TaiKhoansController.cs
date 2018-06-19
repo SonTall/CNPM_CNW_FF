@@ -17,7 +17,7 @@ namespace FastFoodManagement.Controllers
         // GET: TaiKhoans
         public ActionResult Index()
         {
-            var taiKhoans = db.TaiKhoans.Include(t => t.NhanVien);
+            var taiKhoans = db.TaiKhoans.Include(t => t.KhachHang).Include(t => t.NhanVien);
             return View(taiKhoans.ToList());
         }
 
@@ -39,6 +39,7 @@ namespace FastFoodManagement.Controllers
         // GET: TaiKhoans/Create
         public ActionResult Create()
         {
+            ViewBag.MaKhachHang = new SelectList(db.KhachHangs, "MaKhachHang", "TenKhachHang");
             ViewBag.MaNhanVien = new SelectList(db.NhanViens, "MaNhanVien", "HoTen");
             return View();
         }
@@ -48,7 +49,7 @@ namespace FastFoodManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaNhanVien,TenTaiKhoan,MatKhau,ThoiGianTao,LoaiTaiKhoan,HinhAnh")] TaiKhoan taiKhoan)
+        public ActionResult Create([Bind(Include = "MaTaiKhoan,MaKhachHang,MaNhanVien,TenTaiKhoan,MatKhau,ThoiGianTao,LoaiTaiKhoan,HinhAnh")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace FastFoodManagement.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.MaKhachHang = new SelectList(db.KhachHangs, "MaKhachHang", "TenKhachHang", taiKhoan.MaKhachHang);
             ViewBag.MaNhanVien = new SelectList(db.NhanViens, "MaNhanVien", "HoTen", taiKhoan.MaNhanVien);
             return View(taiKhoan);
         }
@@ -73,6 +75,7 @@ namespace FastFoodManagement.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MaKhachHang = new SelectList(db.KhachHangs, "MaKhachHang", "TenKhachHang", taiKhoan.MaKhachHang);
             ViewBag.MaNhanVien = new SelectList(db.NhanViens, "MaNhanVien", "HoTen", taiKhoan.MaNhanVien);
             return View(taiKhoan);
         }
@@ -82,7 +85,7 @@ namespace FastFoodManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaNhanVien,TenTaiKhoan,MatKhau,ThoiGianTao,LoaiTaiKhoan,HinhAnh")] TaiKhoan taiKhoan)
+        public ActionResult Edit([Bind(Include = "MaTaiKhoan,MaKhachHang,MaNhanVien,TenTaiKhoan,MatKhau,ThoiGianTao,LoaiTaiKhoan,HinhAnh")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +93,7 @@ namespace FastFoodManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.MaKhachHang = new SelectList(db.KhachHangs, "MaKhachHang", "TenKhachHang", taiKhoan.MaKhachHang);
             ViewBag.MaNhanVien = new SelectList(db.NhanViens, "MaNhanVien", "HoTen", taiKhoan.MaNhanVien);
             return View(taiKhoan);
         }

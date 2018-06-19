@@ -45,9 +45,6 @@
     <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
     <Property Name="SoDienThoai" Type="nchar" MaxLength="10" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="TenTaiKhoan" Type="nvarchar" MaxLength="50" />
-    <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
-    <Property Name="HinhAnh" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="KhachVangLai">
     <Key>
@@ -100,9 +97,11 @@
   </EntityType>
   <EntityType Name="TaiKhoan">
     <Key>
-      <PropertyRef Name="MaNhanVien" />
+      <PropertyRef Name="MaTaiKhoan" />
     </Key>
-    <Property Name="MaNhanVien" Type="int" Nullable="false" />
+    <Property Name="MaTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaKhachHang" Type="int" />
+    <Property Name="MaNhanVien" Type="int" />
     <Property Name="TenTaiKhoan" Type="nvarchar" MaxLength="50" />
     <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
     <Property Name="ThoiGianTao" Type="date" />
@@ -157,6 +156,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HoaDonThanhToan_KhachVangLai">
+    <End Role="KhachVangLai" Type="Self.KhachVangLai" Multiplicity="0..1" />
+    <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachVangLai">
+        <PropertyRef Name="MaKhachVangLai" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaKhachVangLai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_HoaDonThanhToan_NhanVien">
     <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
     <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
@@ -181,9 +192,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TaiKhoan_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKhachHang" />
+      </Principal>
+      <Dependent Role="TaiKhoan">
+        <PropertyRef Name="MaKhachHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TaiKhoan_NhanVien">
-    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
-    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NhanVien">
         <PropertyRef Name="MaNhanVien" />
@@ -221,6 +244,10 @@
       <End Role="KhachHang" EntitySet="KhachHang" />
       <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
     </AssociationSet>
+    <AssociationSet Name="FK_HoaDonThanhToan_KhachVangLai" Association="Self.FK_HoaDonThanhToan_KhachVangLai">
+      <End Role="KhachVangLai" EntitySet="KhachVangLai" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
+    </AssociationSet>
     <AssociationSet Name="FK_HoaDonThanhToan_NhanVien" Association="Self.FK_HoaDonThanhToan_NhanVien">
       <End Role="NhanVien" EntitySet="NhanVien" />
       <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
@@ -228,6 +255,10 @@
     <AssociationSet Name="FK_MonAn_ChuDe" Association="Self.FK_MonAn_ChuDe">
       <End Role="ChuDe" EntitySet="ChuDe" />
       <End Role="MonAn" EntitySet="MonAn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaiKhoan_KhachHang" Association="Self.FK_TaiKhoan_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
     </AssociationSet>
     <AssociationSet Name="FK_TaiKhoan_NhanVien" Association="Self.FK_TaiKhoan_NhanVien">
       <End Role="NhanVien" EntitySet="NhanVien" />

@@ -14,13 +14,16 @@ namespace FastFoodManagement.Models
     
     public partial class TaiKhoan
     {
-        public int MaNhanVien { get; set; }
+        public int MaTaiKhoan { get; set; }
+        public Nullable<int> MaKhachHang { get; set; }
+        public Nullable<int> MaNhanVien { get; set; }
         public string TenTaiKhoan { get; set; }
         public string MatKhau { get; set; }
         public Nullable<System.DateTime> ThoiGianTao { get; set; }
         public Nullable<int> LoaiTaiKhoan { get; set; }
         public string HinhAnh { get; set; }
     
+        public virtual KhachHang KhachHang { get; set; }
         public virtual NhanVien NhanVien { get; set; }
     }
 }

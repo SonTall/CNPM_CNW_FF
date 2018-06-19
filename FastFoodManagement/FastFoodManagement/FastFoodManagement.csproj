@@ -165,6 +165,7 @@
     <Compile Include="Controllers\KhachHangsController.cs" />
     <Compile Include="Controllers\KhachVangLaisController.cs" />
     <Compile Include="Controllers\KhuyenMaisController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MonAnsController.cs" />
     <Compile Include="Controllers\NhanViensController.cs" />
     <Compile Include="Controllers\TaiKhoansController.cs" />
@@ -444,11 +445,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\KhachHangs\Create.cshtml" />
-    <Content Include="Views\KhachHangs\Delete.cshtml" />
-    <Content Include="Views\KhachHangs\Details.cshtml" />
-    <Content Include="Views\KhachHangs\Edit.cshtml" />
-    <Content Include="Views\KhachHangs\Index.cshtml" />
     <Content Include="Views\KhuyenMais\Create.cshtml" />
     <Content Include="Views\KhuyenMais\Delete.cshtml" />
     <Content Include="Views\KhuyenMais\Details.cshtml" />
@@ -484,16 +480,6 @@
     <Content Include="Views\KhachVangLais\Details.cshtml" />
     <Content Include="Views\KhachVangLais\Edit.cshtml" />
     <Content Include="Views\KhachVangLais\Index.cshtml" />
-    <Content Include="Views\NhanViens\Create.cshtml" />
-    <Content Include="Views\NhanViens\Delete.cshtml" />
-    <Content Include="Views\NhanViens\Details.cshtml" />
-    <Content Include="Views\NhanViens\Edit.cshtml" />
-    <Content Include="Views\NhanViens\Index.cshtml" />
-    <Content Include="Views\TaiKhoans\Create.cshtml" />
-    <Content Include="Views\TaiKhoans\Delete.cshtml" />
-    <Content Include="Views\TaiKhoans\Details.cshtml" />
-    <Content Include="Views\TaiKhoans\Edit.cshtml" />
-    <Content Include="Views\TaiKhoans\Index.cshtml" />
     <Content Include="Views\HoaDonThanhToans\Create.cshtml" />
     <Content Include="Views\HoaDonThanhToans\Delete.cshtml" />
     <Content Include="Views\HoaDonThanhToans\Details.cshtml" />
@@ -504,6 +490,24 @@
     <Content Include="Views\DonHangs\Details.cshtml" />
     <Content Include="Views\DonHangs\Edit.cshtml" />
     <Content Include="Views\DonHangs\Index.cshtml" />
+    <Content Include="Views\Login\DangNhap.cshtml" />
+    <Content Include="Views\Login\DangKy.cshtml" />
+    <Content Include="Views\KhachHangs\Create.cshtml" />
+    <Content Include="Views\KhachHangs\Delete.cshtml" />
+    <Content Include="Views\KhachHangs\Details.cshtml" />
+    <Content Include="Views\KhachHangs\Edit.cshtml" />
+    <Content Include="Views\KhachHangs\Index.cshtml" />
+    <Content Include="Views\NhanViens\Create.cshtml" />
+    <Content Include="Views\NhanViens\Delete.cshtml" />
+    <Content Include="Views\NhanViens\Details.cshtml" />
+    <Content Include="Views\NhanViens\Edit.cshtml" />
+    <Content Include="Views\NhanViens\Index.cshtml" />
+    <Content Include="Views\TaiKhoans\Create.cshtml" />
+    <Content Include="Views\TaiKhoans\Delete.cshtml" />
+    <Content Include="Views\TaiKhoans\Details.cshtml" />
+    <Content Include="Views\TaiKhoans\Edit.cshtml" />
+    <Content Include="Views\TaiKhoans\Index.cshtml" />
+    <Content Include="Views\Login\TaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+<main role="main" class="probootstrap-main js-probootstrap-main">
+    <h2>@ViewBag.ThongBao</h2>
+    @using (Html.BeginForm())
+    {
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <span>Tài khoản :</span>
+                <br />
+                <input name="txtTaiKhoan" type="text" />
+                <br />
+                <span>Mật khẩu:</span><br />
+                <input name="txtMatKhau" type="text" />
+                <br />
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    }
+</main>
