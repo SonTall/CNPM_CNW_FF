@@ -21,14 +21,14 @@ namespace FastFoodManagement.Models
         }
     
         public int MaMonAn { get; set; }
+        public int MaChuDe { get; set; }
         public string TenMonAn { get; set; }
         public string DonGia { get; set; }
         public string HinhAnh { get; set; }
         public string GhiChu { get; set; }
-        public int MaChuDe { get; set; }
     
+        public virtual ChuDe ChuDe { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonHang> DonHangs { get; set; }
-        public virtual ChuDe ChuDe { get; set; }
     }
 }

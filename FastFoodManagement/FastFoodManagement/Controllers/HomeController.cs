@@ -13,6 +13,8 @@ namespace FastFoodManagement.Controllers
     public class HomeController : Controller
     {
         private FastFoodManagementEntities1 db = new FastFoodManagementEntities1();
+
+        //[AuthorizeAttribute]
         public ActionResult Index(int? page)
         {
             int pageSize = 7;
@@ -39,30 +41,21 @@ namespace FastFoodManagement.Controllers
             return View();
         }
 
-        public ActionResult Menu(int? machude, string tenmon)
+        public ActionResult Menu(string tenmon)
         {
-            if (tenmon == null && machude == null)
-            {
-                ViewBag.TenChuDe = db.ChuDes.SingleOrDefault(n => n.MaChuDe == 1);
+            if (tenmon == null)
                 return View(db.MonAns.OrderBy(n => n.MaMonAn).ToList());
-            }
-            else if (tenmon == null && machude != null)
-            {
-                ViewBag.TenChuDe = db.ChuDes.SingleOrDefault(n => n.MaChuDe == machude);
-                return View(db.MonAns.Single(n => n.MaChuDe == machude));
-            }
-            else if (tenmon != null && machude == null)
-            {
-                ViewBag.TenChuDe = db.ChuDes.SingleOrDefault(n => n.MaChuDe == 1);
-                return View(db.MonAns.SqlQuery("select * from MonAn where TenMonAn like '%'+@ten+'%'", new SqlParameter("@ten", tenmon)).ToList());
-            }
             else
-            {
-                ViewBag.TenChuDe = db.ChuDes.SingleOrDefault(n => n.MaChuDe == machude);
-                return View(db.MonAns.SqlQuery("select * from MonAn where TenMonAn like '%'+@ten+'%' and MaChuDe = @machude", new SqlParameter("@ten", tenmon), new SqlParameter("@machude", machude)));
-            }
+                return View(db.MonAns.SqlQuery("select * from MonAn where TenMonAn like '%'+@ten+'%'", new SqlParameter("@ten", tenmon)).ToList());
         }
 
+
+        public ActionResult ListKhuyenMai()
+        {
+            //var khuyenMai = db.KhuyenMais.Where(n => DateTime.Compare(Convert.ToDateTime(n.ThoiGianBatDau), DateTime.Now) > 0 && DateTime.Compare(Convert.ToDateTime(n.ThoiGianKetThuc), DateTime.Now) < 0).ToList();
+            var khuyenMai = db.KhuyenMais.Where(n => n.ThoiGianBatDau < DateTime.Now && n.ThoiGianKetThuc > DateTime.Now).ToList();
+            return View(khuyenMai);
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
 }
 
 <h2>Create</h2>
@@ -12,11 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>DonHang</h4>
+        <h4>Đơn hàng - thêm mới</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.MaHoaDon, "MaHoaDon", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaHoaDon, "Ghi chú - hóa đơn đặt hàng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("MaHoaDon", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MaHoaDon, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaMonAn, "MaMonAn", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaMonAn, "Tên món ăn", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("MaMonAn", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MaMonAn, "", new { @class = "text-danger" })
@@ -32,16 +32,17 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SoLuong, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SoLuong, "Số lượng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                @ViewBag.ThongBao
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Thêm mới" class="btn btn-success" />
             </div>
         </div>
     </div>

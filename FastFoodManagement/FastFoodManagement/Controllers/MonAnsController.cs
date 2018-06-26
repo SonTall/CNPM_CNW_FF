@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,12 +17,34 @@ namespace FastFoodManagement.Controllers
         private FastFoodManagementEntities1 db = new FastFoodManagementEntities1();
 
         // GET: MonAns
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string tenmon, string gia)
         {
+            #region phan quyen
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "Login");
+            }
+            TaiKhoan check = Session["TaiKhoan"] as TaiKhoan;
+            if (check.LoaiTaiKhoan != 0 && check.LoaiTaiKhoan != 1)
+            {
+                //ViewBag.ThongBao = "Tài khoản của bạn không được phép truy cập!";
+                TempData["msg"] = "<script>alert('Tài khoản của bạn không được phép truy cập!');</script>";
+                return RedirectToAction("Index", "Home");
+            }
+            #endregion
+
+            #region tim kiem, phan trang
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
-            int pageSize = 8;
-            //return View(db.MonAns.ToList());
-            return View(db.MonAns.ToList().OrderBy(n => n.MaMonAn).ToPagedList(pageNumber, pageSize));
+            if ((tenmon == null || tenmon == "") && (gia == null || gia == ""))
+                return View(db.MonAns.ToList().OrderBy(n => n.TenMonAn).ToPagedList(pageNumber, pageSize));
+            else if ((tenmon != null || tenmon != "") && (gia == null || gia == ""))
+                return View(db.MonAns.SqlQuery("select * from MonAn where TenMonAn like '%'+@ten+'%'", new SqlParameter("@ten", tenmon)).ToList().OrderBy(n => n.TenMonAn).ToPagedList(pageNumber, pageSize));
+            else if ((tenmon == null || tenmon == "") && (gia != null || gia != ""))
+                return View(db.MonAns.SqlQuery("select * from MonAn where DonGia = @gia", new SqlParameter("@gia", gia)).ToList().OrderBy(n => n.TenMonAn).ToPagedList(pageNumber, pageSize));
+            else
+                return View(db.MonAns.SqlQuery("select * from MonAn where TenMonAn like '%'+@ten+'%' and DonGia = @gia", new SqlParameter("@ten", tenmon), new SqlParameter("@gia", gia)).ToList().OrderBy(n => n.TenMonAn).ToPagedList(pageNumber, pageSize));
+            #endregion
         }
 
         // GET: MonAns/Details/5
@@ -44,6 +67,7 @@ namespace FastFoodManagement.Controllers
         // GET: MonAns/Create
         public ActionResult Create()
         {
+            ViewBag.MaChuDe = new SelectList(db.ChuDes, "MaChuDe", "TenChuDe");
             return View();
         }
 
@@ -52,7 +76,7 @@ namespace FastFoodManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaMonAn,TenMonAn,DonGia,HinhAnh,GhiChu")] MonAn monAn)
+        public ActionResult Create([Bind(Include = "MaMonAn,MaChuDe,TenMonAn,DonGia,HinhAnh,GhiChu")] MonAn monAn)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +85,7 @@ namespace FastFoodManagement.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.MaChuDe = new SelectList(db.ChuDes, "MaChuDe", "TenChuDe", monAn.MaChuDe);
             return View(monAn);
         }
 
@@ -76,6 +101,7 @@ namespace FastFoodManagement.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MaChuDe = new SelectList(db.ChuDes, "MaChuDe", "TenChuDe", monAn.MaChuDe);
             return View(monAn);
         }
 
@@ -84,7 +110,7 @@ namespace FastFoodManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaMonAn,TenMonAn,DonGia,HinhAnh,GhiChu")] MonAn monAn)
+        public ActionResult Edit([Bind(Include = "MaMonAn,MaChuDe,TenMonAn,DonGia,HinhAnh,GhiChu")] MonAn monAn)
         {
             if (ModelState.IsValid)
             {
@@ -92,28 +118,29 @@ namespace FastFoodManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.MaChuDe = new SelectList(db.ChuDes, "MaChuDe", "TenChuDe", monAn.MaChuDe);
             return View(monAn);
         }
 
-        // GET: MonAns/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MonAn monAn = db.MonAns.Find(id);
-            if (monAn == null)
-            {
-                return HttpNotFound();
-            }
-            return View(monAn);
-        }
+        //// GET: MonAns/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    MonAn monAn = db.MonAns.Find(id);
+        //    if (monAn == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(monAn);
+        //}
 
         // POST: MonAns/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
         {
             MonAn monAn = db.MonAns.Find(id);
             db.MonAns.Remove(monAn);

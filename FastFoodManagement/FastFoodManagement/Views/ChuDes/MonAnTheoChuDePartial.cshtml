@@ -1,0 +1,12 @@
+﻿@using FastFoodManagement.Models
+@model List<ChuDe>
+
+<div class="form-inline">
+    @foreach (var item in Model)
+    {
+        <div class="form-inline" style="margin:5px;border:1px;">
+            @Html.ActionLink(@item.TenChuDe, "MonAnTheoChuDe", new { @machude = item.MaChuDe }, htmlAttributes: new { @class = "btn btn-outline-success" })
+        </div>
+    }
+</div>
+

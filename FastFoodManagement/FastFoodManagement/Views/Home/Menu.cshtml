@@ -5,58 +5,50 @@
     Layout = "~/Views/Layout/HomeLayout.cshtml";
 }
 
-<main role="main" class="probootstrap-main js-probootstrap-main">
-    @*<div class="form-group form-inline">
-        @foreach (var item in ViewBag.TenChuDe)
-        {
-            <a id="btnChuDe" style="width: 250px; font-size: 11pt; color: aliceblue;  text-decoration: none" href="@Url.Action("SachTheoChuDe", new {@machude=item.MaChuDe })" class="button button-submit"> @item.TenChuDe</a>
-            <br />
-        }
-    </div>*@
-    @using (Html.BeginForm("Menu", "Home", FormMethod.Get))
+@Html.Action("MonAnTheoChuDePartial", "ChuDes")
+@using (Html.BeginForm("Menu", "Home", FormMethod.Get))
+{
+    <div class="form-group form-inline">
+        <input type="text" class="form-control" placeholder="Nhập tên món ăn:" name="tenmon">
+        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+    </div>
+}
+<div class="card-columns">
+    @foreach (var item in Model)
     {
-        <div class="form-group form-inline">
-            <input type="text" class="form-control" placeholder="Nhập tên món ăn:" name="tenmon">
-            <button type="submit" class="btn btn-success">Tìm kiếm</button>
+        <div class="card">
+            <a href="@Url.Action("Details", "MonAns", new { @id=item.MaMonAn })">
+                <div class="tag">@item.TenMonAn</div>
+                <img class="card-img-top probootstrap-animate" src="@Url.Content("~/HinhAnh/"+item.HinhAnh)" alt="Card image cap">
+                <div class="tag">Giá tiền: @String.Format("{0:0,0}", item.DonGia) VNĐ</div>
+            </a>
+            <div id="btn">
+                @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaMonAn = item.MaMonAn, @strURL = Request.Url.ToString() }))
+                {
+                    <input type="submit" style="cursor:pointer" value="Thêm vào giỏ hàng " id="btnGioHang" class="btn btn-success btn-block full-width">
+                }
+            </div>
         </div>
     }
-    <div class="card-columns">
-        @foreach (var item in Model)
-        {
-            <div class="card">
-                <a href="@Url.Action("Details", "MonAns", new { @id=item.MaMonAn })">
-                    <div class="tag">@item.TenMonAn</div>
-                    <img class="card-img-top probootstrap-animate" src="@Url.Content("~/HinhAnh/"+item.HinhAnh)" alt="Card image cap">
-                    <div class="tag">Giá tiền: @String.Format("{0:0,0}", item.DonGia) VNĐ</div>
-                </a>
-                <div id="btn">
-                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaMonAn = item.MaMonAn, @strURL = Request.Url.ToString() }))
-                    {
-                        <input type="submit" style="cursor:pointer" value="Thêm vào giỏ hàng " id="btnGioHang" class="btn btn-success btn-block full-width">
-                    }
-                </div>
-            </div>
-        }
-    </div>
-    <style>
-        .MenuTrang li {
-            display: inline;
-            margin: 5px;
-            font-size: 23px;
-        }
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+        margin: 5px;
+        font-size: 23px;
+    }
 
-        .tag {
-            background: rgba(0, 0, 0, 0.05);
-        }
+    .tag {
+        background: rgba(0, 0, 0, 0.05);
+    }
 
-        #btn {
-            background: rgba(0, 0, 0, 0.05);
+    #btn {
+        background: rgba(0, 0, 0, 0.05);
+        background-size: cover;
+    }
+
+        #btn #btnGioHang {
             background-size: cover;
         }
-
-            #btn #btnGioHang {
-                background-size: cover;
-            }
-    </style>
-</main>
+</style>
 

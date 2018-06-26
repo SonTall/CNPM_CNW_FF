@@ -10,6 +10,35 @@ namespace FastFoodManagement.Controllers
     public class GioHangController : Controller
     {
         FastFoodManagementEntities1 db = new FastFoodManagementEntities1();
+        #region Func
+        //Tính tổng số lượng và tổng tiền
+        //Tính tổng số lượng
+        private int TongSoLuong()
+        {
+            int iTongSoLuong = 0;
+            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+            if (lstGioHang != null)
+            {
+                iTongSoLuong = lstGioHang.Sum(n => n.iSoLuong);
+            }
+            return iTongSoLuong;
+        }
+        //Tính tổng thành tiền
+        private double TongTien(double tongTien, double? giatri)
+        {
+            //double dTongTien = 0;
+            //List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+            //if (lstGioHang != null)
+            //{
+            //dTongTien = lstGioHang.Sum(n => n.ThanhTien);
+            if (giatri != null)
+            {
+                tongTien = tongTien - tongTien * Convert.ToDouble(giatri) / 100;
+            }
+            //}
+            return tongTien;
+        }
+        #endregion
         #region Giỏ hàng
         //Lấy giỏ hàng 
         public List<GioHang> LayGioHang()
@@ -23,6 +52,7 @@ namespace FastFoodManagement.Controllers
             }
             return lstGioHang;
         }
+
         //Thêm giỏ hàng
         public ActionResult ThemGioHang(int iMaMonAn, string strURL)
         {
@@ -49,6 +79,7 @@ namespace FastFoodManagement.Controllers
                 return Redirect(strURL);
             }
         }
+
         //Cập nhật giỏ hàng 
         public ActionResult CapNhatGioHang(int id, FormCollection f)
         {
@@ -72,6 +103,7 @@ namespace FastFoodManagement.Controllers
             }
             return RedirectToAction("GioHang");
         }
+
         //Xóa giỏ hàng
         public ActionResult XoaGioHang(int id)
         {
@@ -98,6 +130,7 @@ namespace FastFoodManagement.Controllers
             }
             return RedirectToAction("GioHang");
         }
+
         //Xây dựng trang giỏ hàng
         public ActionResult GioHang()
         {
@@ -106,31 +139,18 @@ namespace FastFoodManagement.Controllers
                 return RedirectToAction("Index", "Home");
             }
             List<GioHang> lstGioHang = LayGioHang();
+
+            // tinh tien co khuyen mai
+            var khuyenMai = db.KhuyenMais.Where(n => n.ThoiGianBatDau < DateTime.Now && n.ThoiGianKetThuc > DateTime.Now).ToList();
+            double dkhuyenMai = Convert.ToDouble(khuyenMai.Sum(n => n.GiaTri));
+
+            ViewBag.KhuyenMai = khuyenMai;
+            ViewBag.TongGiaTri = dkhuyenMai;
+            ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongTien = TongTien(lstGioHang.Sum(n => n.ThanhTien), dkhuyenMai);
             return View(lstGioHang);
         }
-        //Tính tổng số lượng và tổng tiền
-        //Tính tổng số lượng
-        private int TongSoLuong()
-        {
-            int iTongSoLuong = 0;
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
-            if (lstGioHang != null)
-            {
-                iTongSoLuong = lstGioHang.Sum(n => n.iSoLuong);
-            }
-            return iTongSoLuong;
-        }
-        //Tính tổng thành tiền
-        private double TongTien()
-        {
-            double dTongTien = 0;
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
-            if (lstGioHang != null)
-            {
-                dTongTien = lstGioHang.Sum(n => n.ThanhTien);
-            }
-            return dTongTien;
-        }
+
         //tạo partial giỏ hàng
         public ActionResult GioHangPartial()
         {
@@ -139,7 +159,6 @@ namespace FastFoodManagement.Controllers
                 return PartialView();
             }
             ViewBag.TongSoLuong = TongSoLuong();
-            ViewBag.TongTien = TongTien();
             return PartialView();
         }
         //Xây dựng 1 view cho người dùng chỉnh sửa giỏ hàng
@@ -156,12 +175,64 @@ namespace FastFoodManagement.Controllers
         #endregion
 
         #region Đặt hàng
+        public ActionResult DatHangTrucTiep()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DatHangTrucTiep([Bind(Include = "HoTen,DiaChi,SoDienThoai")] KhachVangLai khachVangLai)
+        {
+            if (Session["GioHang"] == null)
+            {
+                RedirectToAction("Index", "Home");
+            }
+            if (ModelState.IsValid)
+            {
+                //Session["KhachVangLai"] = khachVangLai;
+                db.KhachVangLais.Add(khachVangLai);
+                db.SaveChanges();
+                HoaDonThanhToan hoaDonThanhToan = new HoaDonThanhToan();
+                hoaDonThanhToan.MaKhachVangLai = khachVangLai.MaKhachVangLai;
+                hoaDonThanhToan.ThanhToan = false;
+                hoaDonThanhToan.ThoiGianDatHang = DateTime.Now;
+                hoaDonThanhToan.GiaoHang = false;
+                db.HoaDonThanhToans.Add(hoaDonThanhToan);
+                db.SaveChanges();
+
+                List<GioHang> gioHangs = LayGioHang();
+                foreach (var item in gioHangs)
+                {
+                    DonHang donHang = new DonHang();
+                    donHang.MaHoaDon = hoaDonThanhToan.MaHoaDon;
+                    donHang.MaMonAn = item.iMaMonAn;
+                    donHang.SoLuong = item.iSoLuong;
+                    db.DonHangs.Add(donHang);
+                    db.SaveChanges();
+                }
+                //ViewBag.ThongBao = "Đặt hàng thành công!";
+                TempData["ThongBao"] = "Mua hàng thành công!";
+                return RedirectToAction("GioHang", "GioHang");
+            }
+            ViewBag.ThongBao = "Đặt hàng không thành công!";
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult DatHang()
         {
             //Kiểm tra đăng đăng nhập
             if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
             {
+                //string str = "GioHang";
+                TempData["Redirection"] = "Đăng nhập thành công vào lại giỏ hàng để đặt hàng!";
+
+                //TempData["Redirection"] = "<script>" + " $("#out").click(function() {" +
+                //    "</script>";
+                //    $("#out").click(function() {
+                //    window.location.href = '@Url.Action("DangXuat", "Login")';
+                //});
                 return RedirectToAction("DangNhap", "Login");
             }
             //Kiểm tra giỏ hàng
@@ -170,47 +241,28 @@ namespace FastFoodManagement.Controllers
                 RedirectToAction("Index", "Home");
             }
             //Thêm đơn hàng
-            DonHang ddh = new DonHang();
-            HoaDonThanhToan hdtt = new HoaDonThanhToan();
-            TaiKhoan tk = Session["TaiKhoan"] as TaiKhoan;
-            List<GioHang> gh = LayGioHang();
-            if(tk.MaKhachHang == null)
-            {
-                hdtt.MaKhachHang = null;
-                // chua lam khach vang lai
-                hdtt.MaKhachVangLai = null;
-            }
-            else
-            {
-                hdtt.MaKhachHang = tk.MaKhachHang;
-                hdtt.MaKhachVangLai = null;
-            }
-            hdtt.ThoiGian = DateTime.Now;
-            hdtt.MaNhanVien = null;
-            hdtt.GhiChu = null;
-            db.HoaDonThanhToans.Add(hdtt);
-
-            //var tmp = db.HoaDonThanhToans.Single(n => n.ThoiGian == hdtt.ThoiGian && n.MaKhachHang == tk.MaKhachHang);
-            ddh.MaHoaDon = hdtt.MaHoaDon;
-            //ddh = tk.MaKhachHang;
-            //ddh.NgayDat = DateTime.Now;
-            //db.DonHangs.Add(ddh);
-            //db.SaveChanges();
-            foreach (var item in gh)
-            {
-                //ChiTietDonHang ctDH = new ChiTietDonHang();
-                //ctDH.MaDonHang = ddh.MaDonHang;
-                //ctDH.MaSach = item.iMaSach;
-                //ctDH.SoLuong = item.iSoLuong;
-                //ctDH.DonGia = (decimal)item.dDonGia;
-                //db.ChiTietDonHangs.Add(ctDH);
-                ddh.MaMonAn = item.iMaMonAn;
-                ddh.SoLuong = item.iSoLuong;
-                db.DonHangs.Add(ddh);
-            }
+            TaiKhoan taiKhoan = Session["TaiKhoan"] as TaiKhoan;
+            HoaDonThanhToan hoaDonThanhToan = new HoaDonThanhToan();
+            hoaDonThanhToan.MaKhachHang = taiKhoan.MaKhachHang;
+            hoaDonThanhToan.ThanhToan = false;
+            hoaDonThanhToan.ThoiGianDatHang = DateTime.Now;
+            hoaDonThanhToan.GiaoHang = false;
+            db.HoaDonThanhToans.Add(hoaDonThanhToan);
             db.SaveChanges();
-            //db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+
+            List<GioHang> gioHangs = LayGioHang();
+            foreach (var item in gioHangs)
+            {
+                DonHang donHang = new DonHang();
+                donHang.MaHoaDon = hoaDonThanhToan.MaHoaDon;
+                donHang.MaMonAn = item.iMaMonAn;
+                donHang.SoLuong = item.iSoLuong;
+                db.DonHangs.Add(donHang);
+                db.SaveChanges();
+            }
+            TempData["ThongBao"] = "Mua hàng thành công!";
+            return RedirectToAction("GioHang", "GioHang");
+            //return RedirectToAction("Index", "Home");
         }
         #endregion
     }

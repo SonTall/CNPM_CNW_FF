@@ -2,42 +2,53 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
 }
+<h4>Thông tin tài khoản - quản trị</h4>
 
-<h2>Details</h2>
+<table class="table table-striped">
+    <tr>
+        <th>Họ tên</th>
+        <th>Giới tính</th>
+        <th>Ngày sinh</th>
+        <th>Số điện thoại</th>
+        <th>Địa chỉ</th>
+        <th>Email</th>
+    </tr>
+    <tr>
+        <td>@Html.DisplayFor(model => model.HoTen)</td>
+        <td>
+            @if (Model.GioiTinh == true)
+            {
+                @:Nam
+            }
+            else
+            {
+                @:Nữ
+            }
+        </td>
+        <td>@Html.DisplayFor(model => model.NgaySinh)</td>
+        <td>@Html.DisplayFor(model => model.SoDienThoai)</td>
+        <td>@Html.DisplayFor(model => model.DiaChi)</td>
+        <td>@Html.DisplayFor(model => model.Email)</td>
+    </tr>
+</table>
 
-<div>
-    <h4>NhanVien</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HoTen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HoTen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SoDienThoai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SoDienThoai)
-        </dd>
-
-    </dl>
+<div class="form-horizontal" style="font-size: 17px;">
+    <p>Tên tài khoản: @ViewBag.TaiKhoan.TenTaiKhoan</p>
+    <p>Mật khẩu: @ViewBag.TaiKhoan.MatKhau</p>
+    <p>
+        Loại tài khoản:
+        @if (ViewBag.TaiKhoan.LoaiTaiKhoan == 0)
+        {
+            @:Quản trị
+        }
+        @if (ViewBag.TaiKhoan.LoaiTaiKhoan == 1)
+        {
+            @:Nhân viên
+        }
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaNhanVien }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    @Html.ActionLink("Trở về", "Index", "Admin")
+</div>

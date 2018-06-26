@@ -4,64 +4,65 @@
     Layout = "~/Views/Layout/HomeLayout.cshtml";
 }
 
-<main role="main" class="probootstrap-main js-probootstrap-main">
-    <table id="divGioHang">
+<h4>Chỉnh sửa giỏ hàng</h4>
+<table id="divGioHang" class="table table-striped">
+    <tr style="font-size:18px;font-weight: bold;">
+        <td>Tên món ăn</td>
+        <td>Hình ảnh</td>
+        <td>Đơn giá</td>
+        <td>Số lượng</td>
+        <td>Thành tiền</td>
+        <td style="position:center;">Thao tác</td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
         <tr>
-            <td style="font-weight: bold;">Mã sách</td>
-            <td style="font-weight: bold;">Tên sách</td>
-            <td style="font-weight: bold;">Hình ảnh</td>
-            <td style="font-weight: bold;">Đơn giá</td>
-            <td style="font-weight: bold;">Số lượng</td>
-            <td style="font-weight: bold;">Thành tiền</td>
-        </tr>
+            <td>@item.sTenMonAn</td>
 
-        @foreach (var item in Model)
-        {
+            <td><img src="@Url.Content("~/HinhAnh/"+item.sHinhAnh)" width="100" height="100" /></td>
 
-            <tr>
-                <td>@item.iMaMonAn</td>
+            <td style="text-align:left;color:black;font-style:italic;">
+                @String.Format("{0:0,0}", item.dDonGia) VNĐ
+            </td>
+            @*Chỉnh sửa giỏ hàng gọi về action CapNhatGioHang*@
+            @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @id = item.iMaMonAn }))
+            {
+                <td>@Html.TextBox("txtSoLuong", item.iSoLuong) </td>
 
-                <td>@item.sTenMonAn</td>
-
-                <td><img src="@Url.Content("~/HinhAnh/"+item.sHinhAnh)" width="100" height="100" /></td>
-
-                <td>
-                    @String.Format("{0:0,0}", item.dDonGia) VNĐ
+                <td style="text-align:left;color:black;font-style:italic;">
+                    @String.Format("{0:0,0}", item.ThanhTien) VNĐ
                 </td>
-                @*Chỉnh sửa giỏ hàng gọi về action CapNhatGioHang*@
-                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @id = item.iMaMonAn }))
-                {
-                    <td>@Html.TextBox("txtSoLuong", item.iSoLuong) </td>
+                <td>
+                    <div class="form-inline" style="margin:5px;">
+                        <input type="submit" style="cursor:pointer;" id="btnCapNhat" value="Cập nhật" class="btn btn-outline-success">
+                        @Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.iMaMonAn }, htmlAttributes: new { @class = "btn btn-outline-danger", onclick = "return confirm('Bạn chắc chắn muốn xóa món ăn này Khỏi giỏ hàng?');" })
+                    </div>
+                </td>
+            }
+        </tr>
+    }
+</table>
 
-                    <td>@String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
-                    <td>
-                        <input type="submit"style="cursor:pointer;" id="btnCapNhat" value="Cập nhật" class="btn btn-sm btn-success ">
-                        <br />
-                        @*Xóa giỏ hàng gọi về Action XoaGioHang*@
-                        @Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.iMaMonAn }, htmlAttributes: new { @class = "btn btn-success", onclick = "return confirm('Bạn chắc chắn muốn xóa món ăn này?');" })
-                    </td>
-                }
+<div>
+    @Html.ActionLink("Trở về", "GioHang", "GioHang")
+</div>
 
-                <td></td>
-            </tr>
-
-        }
-    </table>
-</main>
 @*Css giỏ hàng*@
 <style>
     #divGioHang {
-        color: black;
+        /*color: black;
         border: 1px solid #EEEEEE;
         margin-left: 3%;
-        font-size: 16px;
-        width: 90%;
+        font-size: 16px;*/
+        width: 95%;
     }
 
         #divGioHang td {
-            margin: auto;
+            /*margin: auto;
             padding: 10px;
-            border: 1px solid #EEEEEE;
+            border: 1px solid #EEEEEE;*/
             /*float:left;*/
         }
 

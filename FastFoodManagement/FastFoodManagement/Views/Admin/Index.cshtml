@@ -1,0 +1,137 @@
+﻿@model List<FastFoodManagement.Models.HoaDonThanhToan>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
+}
+
+<h4>Thống kê</h4>
+@Html.Raw(TempData["msg"])
+<div class="form-inline">
+    Tổng số lượng hóa đơn đã thanh toán: @ViewBag.HoaDonThanhToan
+</div>
+
+<div class="form-inline">
+    Tổng số lượng món ăn đã bán: @ViewBag.SoLuongMonAn
+</div>
+
+<div class="form-inline">
+    Các loại tài khoản: @ViewBag.QuanTri tài khoản quản trị, @ViewBag.NhanVien tài khoản nhân viên, @ViewBag.KhachHang tài khoản khách hàng
+</div>
+<br />
+<table class="table table-striped">
+    <tr style="font-weight: bold; font-size:17px;">
+        <th>
+            Tên bảng:
+        </th>
+        <th>
+            Tổng số lượng:
+        </th>
+    </tr>
+    <tr>
+        <td>
+            Nhân viên:
+        </td>
+        <td>
+            @ViewBag.CountNhanVien
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Tài khoản:
+        </td>
+        <td>
+            @ViewBag.CountTaiKhoan
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Khách hàng:
+        </td>
+        <td>
+            @ViewBag.CountKhachHang
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Khách vãng lai:
+        </td>
+        <td>
+            @ViewBag.CountKhachVangLai
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Chủ đề:
+        </td>
+        <td>
+            @ViewBag.CountChuDe
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Món ăn:
+        </td>
+        <td>
+            @ViewBag.CountMonAn
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Đơn hàng:
+        </td>
+        <td>
+            @ViewBag.CountDonHang
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Hóa đơn thanh toán:
+        </td>
+        <td>
+            @ViewBag.CountHoaDonThanhToan
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Khuyến mãi:
+        </td>
+        <td>
+            @ViewBag.CountKhuyenMai
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Giảm giá:
+        </td>
+        <td>
+            @ViewBag.CountGiamGia
+        </td>
+    </tr>
+</table>
+
+
+
+@*<div class="form-group">
+    <h4>Thống kê đơn hàng đã thanh toán theo tháng</h4>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Tháng
+            </th>
+            <th>
+                Số lượng
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                   @* item.MaHoaDon*@
+                @*</td>
+            </tr>
+        }
+    </table>
+</div>*@
+

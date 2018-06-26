@@ -1,0 +1,42 @@
+﻿@model FastFoodManagement.Models.GiamGia
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Giám giả - sửa thông tin</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaKhuyenMai)
+
+        @Html.HiddenFor(model => model.MaHoaDon)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApDung, "Áp dụng",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ApDung)
+                    @Html.ValidationMessageFor(model => model.ApDung, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về", "Index")
+</div>

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FastFoodManagement.Models;
+using PagedList;
 
 namespace FastFoodManagement.Controllers
 {
@@ -15,9 +16,30 @@ namespace FastFoodManagement.Controllers
         private FastFoodManagementEntities1 db = new FastFoodManagementEntities1();
 
         // GET: KhuyenMais
-        public ActionResult Index()
+        public ActionResult Index(int? page, float? giatri)
         {
-            return View(db.KhuyenMais.ToList());
+            #region phan quyen
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "Login");
+            }
+            TaiKhoan check = Session["TaiKhoan"] as TaiKhoan;
+            if (check.LoaiTaiKhoan != 0 && check.LoaiTaiKhoan != 1)
+            {
+                //ViewBag.ThongBao = "Tài khoản của bạn không được phép truy cập!";
+                TempData["msg"] = "<script>alert('Tài khoản của bạn không được phép truy cập!');</script>";
+                return RedirectToAction("Index", "Home");
+            }
+            #endregion
+
+            #region tim kiem, phan trang
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            if (giatri == null)
+                return View(db.KhuyenMais.ToList().OrderBy(n => n.MaKhuyenMai).ToPagedList(pageNumber, pageSize));
+            else
+                return View(db.KhuyenMais.Where(n => n.GiaTri == giatri).ToList().OrderBy(n => n.MaKhuyenMai).ToPagedList(pageNumber, pageSize));
+            #endregion
         }
 
         // GET: KhuyenMais/Details/5
@@ -90,24 +112,24 @@ namespace FastFoodManagement.Controllers
         }
 
         // GET: KhuyenMais/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            KhuyenMai khuyenMai = db.KhuyenMais.Find(id);
-            if (khuyenMai == null)
-            {
-                return HttpNotFound();
-            }
-            return View(khuyenMai);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    KhuyenMai khuyenMai = db.KhuyenMais.Find(id);
+        //    if (khuyenMai == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(khuyenMai);
+        //}
 
         // POST: KhuyenMais/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
         {
             KhuyenMai khuyenMai = db.KhuyenMais.Find(id);
             db.KhuyenMais.Remove(khuyenMai);

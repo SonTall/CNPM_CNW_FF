@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -20,11 +20,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MonAn.TenMonAn)
+            @Html.DisplayNameFor(model => model.ThoiGianDatHang)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MonAn.TenMonAn)
+            @Html.DisplayFor(model => model.ThoiGianDatHang)
         </dd>
 
         <dt>
@@ -35,9 +35,17 @@
             @Html.DisplayFor(model => model.HoaDonThanhToan.GhiChu)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.MonAn.TenMonAn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonAn.TenMonAn)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { mahoadon = Model.MaHoaDon, mamonan = Model.MaMonAn }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

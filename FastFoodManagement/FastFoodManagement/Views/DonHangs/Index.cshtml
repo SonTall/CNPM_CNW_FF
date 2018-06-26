@@ -1,46 +1,67 @@
-﻿@model IEnumerable<FastFoodManagement.Models.DonHang>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<FastFoodManagement.Models.DonHang>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h4>Đơn hàng</h4>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm mới", "Create")
 </p>
-<table class="table">
+
+@using (Html.BeginForm("Index", "DonHangs", FormMethod.Get))
+{
+    <div class="form-group form-inline">
+        <input type="text" class="form-control" placeholder="Nhập ghi chú:" name="ghichu">
+        <input type="text" class="form-control" placeholder="Nhập số lượng:" name="soluong">
+        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+    </div>
+}
+<table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SoLuong)
+            Số lượng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MonAn.TenMonAn)
+            Ghi chú - hóa đơn thanh toán
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoaDonThanhToan.GhiChu)
+            Tên món ăn
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MonAn.TenMonAn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoaDonThanhToan.GhiChu)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoaDonThanhToan.GhiChu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonAn.TenMonAn)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { mahoadon = item.MaHoaDon, mamonan = item.MaMonAn }) |
+                @Html.ActionLink("Xóa", "Delete", new { mahoadon = item.MaHoaDon, mamonan = item.MaMonAn }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa mục này không?');" })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang li {
+        margin: 5px;
+        font-size: 17px;
+    }
+</style>

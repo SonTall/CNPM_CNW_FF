@@ -1,0 +1,67 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<FastFoodManagement.Models.GiamGia>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
+}
+
+<h4>Giảm giá</h4>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "GiamGias", FormMethod.Get))
+{
+    <div class="form-group form-inline">
+        <input type="text" class="form-control" placeholder="Nhập ghi chú - hóa đơn thanh toán:" name="ghichu">
+        <input type="text" class="form-control" placeholder="Nhập mô tả - khuyến mãi:" name="mota">
+        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+    </div>
+}
+<table class="table table-striped">
+    <tr>
+        <th>
+            Áp dụng
+        </th>
+        <th>
+            Ghi chú - Hóa đơn thanh toán
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoaDonThanhToan.GhiChu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhuyenMai.MoTa)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { mahoadon = item.MaHoaDon, makhuyenmai = item.MaKhuyenMai }) |
+                @Html.ActionLink("Xóa", "Delete", new { mahoadon = item.MaHoaDon, makhuyenmai = item.MaKhuyenMai }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa mục này không?');" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang li {
+        margin: 5px;
+        font-size: 17px;
+    }
+</style>

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Aside - Free HTML5 Bootstrap 4 Template by uicookies.com</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Free HTML5 Website Template by uicookies.com" />
+    <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
+    <meta name="author" content="uicookies.com" />
+
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/open-iconic-bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="~/Content/css/icomoon.css">
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+</head>
+<body>
+    <aside class="probootstrap-aside js-probootstrap-aside">
+        <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
+
+            <a href="@Url.Action("Index", "Admin")" class="mb-2 d-block probootstrap-logo" style="font-size: 20px;">FastFood - Quản trị</a>
+        </div>
+        <div class="probootstrap-overflow">
+            <nav class="probootstrap-nav">
+                <ul>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft"> @Html.ActionLink("Giao diện người dùng >>", "Index", "Home") </li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Thống kê cơ bản", "Index", "Admin")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Khách vãng lai", "Index", "KhachVangLais")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Khách hàng", "Index", "KhachHangs")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Tài khoản", "Index", "TaiKhoans")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Nhân viên", "Index", "NhanViens")</li>
+                    <li><br /></li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Chủ đề", "Index", "ChuDes")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Món ăn", "Index", "MonAns")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Giảm giá", "Index", "GiamGias")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Đơn hàng", "Index", "DonHangs")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Khuyến mãi", "Index", "KhuyenMais")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Hóa đơn thanh toán", "Index", "HoaDonThanhToans")</li>
+                </ul>
+            </nav>
+            <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
+                <ul class="list-unstyled d-flex probootstrap-aside-social">
+                    <li><a href="@Url.Action("Index", "Home")" class="p-2"><img src="~/HinhAnh/icon/side-menu.png"></a></li>
+                    <li><a href="@Url.Action("Details", "NhanViens")" class="p-2"><img src="~/HinhAnh/icon/user.png"></a></li>
+                    <li><a href="@Url.Action("DangXuat", "Login")" class="p-2"><img src="~/HinhAnh/icon/logout.png"></a></li>
+                    @*<li><a href="#" class="p-2"><img src="~/HinhAnh/icon/phone-call.png"></a></li>*@
+                </ul>
+                <p>&copy; @DateTime.Now <br />:15150163</p>
+            </footer>
+        </div>
+    </aside>
+
+    <main role="main" class="probootstrap-main js-probootstrap-main" style="font-size:15px;">
+        @RenderBody()
+    </main>
+
+    <script src="~/Content/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.waypoints.min.js"></script>
+    <script src="~/Content/js/imagesloaded.pkgd.min.js"></script>
+
+    <script src="~/Content/js/main.js"></script>
+
+</body>
+</html>

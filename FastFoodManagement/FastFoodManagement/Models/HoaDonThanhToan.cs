@@ -18,19 +18,23 @@ namespace FastFoodManagement.Models
         public HoaDonThanhToan()
         {
             this.DonHangs = new HashSet<DonHang>();
+            this.GiamGias = new HashSet<GiamGia>();
         }
     
         public int MaHoaDon { get; set; }
-        public Nullable<int> MaNhanVien { get; set; }
         public Nullable<int> MaKhachHang { get; set; }
         public Nullable<int> MaKhachVangLai { get; set; }
+        public bool ThanhToan { get; set; }
         public string GhiChu { get; set; }
-        public Nullable<System.DateTime> ThoiGian { get; set; }
+        public Nullable<System.DateTime> ThoiGianDatHang { get; set; }
+        public Nullable<System.DateTime> ThoiGianThanhToan { get; set; }
+        public bool GiaoHang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonHang> DonHangs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GiamGia> GiamGias { get; set; }
         public virtual KhachHang KhachHang { get; set; }
         public virtual KhachVangLai KhachVangLai { get; set; }
-        public virtual NhanVien NhanVien { get; set; }
     }
 }

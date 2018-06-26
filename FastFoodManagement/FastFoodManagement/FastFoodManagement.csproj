@@ -156,9 +156,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChuDesController.cs" />
     <Compile Include="Controllers\DonHangsController.cs" />
+    <Compile Include="Controllers\GiamGiasController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HoaDonThanhToansController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -193,7 +194,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FastFood.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GiamGia.cs">
+      <DependentUpon>FastFood.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\HoaDonThanhToan.cs">
       <DependentUpon>FastFood.tt</DependentUpon>
     </Compile>
@@ -221,16 +226,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\aside\ajax-loader.gif" />
-    <Content Include="Content\aside\animate.css" />
-    <Content Include="Content\aside\bootstrap.min.css" />
-    <Content Include="Content\aside\icomoon.css" />
-    <Content Include="Content\aside\open-iconic-bootstrap.min.css" />
-    <Content Include="Content\aside\owl.carousel.min.css" />
-    <Content Include="Content\aside\owl.theme.default.min.css" />
-    <Content Include="Content\aside\style.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\ajax-loader.gif" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\icomoon.css" />
+    <Content Include="Content\css\open-iconic-bootstrap.min.css" />
+    <Content Include="Content\css\owl.carousel.min.css" />
+    <Content Include="Content\css\owl.theme.default.min.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\giaodien\bootflat-admin\css\bootstrap.min.css" />
     <Content Include="Content\giaodien\bootflat-admin\css\site.css" />
     <Content Include="Content\giaodien\bootflat-admin\js\application.js" />
@@ -277,10 +282,26 @@
     <Content Include="Content\giaodien\dist\img\together.png" />
     <Content Include="Content\giaodien\dist\img\wild_flowers.png" />
     <Content Include="Content\giaodien\dist\js\site.min.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\imagesloaded.pkgd.min.js" />
+    <Content Include="Content\js\jquery-3.2.1.slim.min.js" />
+    <Content Include="Content\js\jquery.waypoints.min.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\owl.carousel.min.js" />
+    <Content Include="Content\js\popper.min.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HinhAnh\icon\envelope.png" />
+    <Content Include="HinhAnh\icon\facebook-logo.png" />
+    <Content Include="HinhAnh\icon\gears-configuration-tool.png" />
+    <Content Include="HinhAnh\icon\instagram-logo.png" />
+    <Content Include="HinhAnh\icon\logout.png" />
+    <Content Include="HinhAnh\icon\phone-call.png" />
+    <Content Include="HinhAnh\icon\settings.png" />
+    <Content Include="HinhAnh\icon\side-menu.png" />
+    <Content Include="HinhAnh\icon\user.png" />
     <Content Include="HinhAnh\img_1.jpg" />
     <Content Include="HinhAnh\img_10.jpg" />
     <Content Include="HinhAnh\img_11.jpg" />
@@ -340,18 +361,6 @@
     <Content Include="Models\FastFood.edmx.diagram">
       <DependentUpon>FastFood.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\aside\.DS_Store" />
-    <Content Include="Content\aside\style.scss" />
-    <Content Include="fonts\aside\.DS_Store" />
-    <Content Include="fonts\aside\icomoon.eot" />
-    <Content Include="fonts\aside\icomoon.svg" />
-    <Content Include="fonts\aside\icomoon.ttf" />
-    <Content Include="fonts\aside\icomoon.woff" />
-    <Content Include="fonts\aside\open-iconic.eot" />
-    <Content Include="fonts\aside\open-iconic.otf" />
-    <Content Include="fonts\aside\open-iconic.svg" />
-    <Content Include="fonts\aside\open-iconic.ttf" />
-    <Content Include="fonts\aside\open-iconic.woff" />
     <Content Include="Scripts\aside\.DS_Store" />
     <Content Include="HinhAnh\.DS_Store" />
     <Content Include="Content\giaodien\bootflat-admin\csscomb.json" />
@@ -421,9 +430,14 @@
     <Content Include="Content\giaodien\dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\giaodien\dist\img\check_flat\default.psd" />
     <Content Include="Content\giaodien\dist\js\site.min.map" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Content\js\.DS_Store" />
+    <Content Include="Content\css\.DS_Store" />
+    <Content Include="Content\scss\style.scss" />
+    <Content Include="fonts\.DS_Store" />
+    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -445,15 +459,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\KhuyenMais\Create.cshtml" />
-    <Content Include="Views\KhuyenMais\Delete.cshtml" />
-    <Content Include="Views\KhuyenMais\Details.cshtml" />
-    <Content Include="Views\KhuyenMais\Edit.cshtml" />
-    <Content Include="Views\KhuyenMais\Index.cshtml" />
-    <Content Include="Views\MonAns\Create.cshtml" />
-    <Content Include="Views\MonAns\Delete.cshtml" />
-    <Content Include="Views\MonAns\Edit.cshtml" />
-    <Content Include="Views\MonAns\Index.cshtml" />
     <Content Include="Views\sysdiagrams\Create.cshtml" />
     <Content Include="Views\sysdiagrams\Delete.cshtml" />
     <Content Include="Views\sysdiagrams\Details.cshtml" />
@@ -464,32 +469,11 @@
     <Content Include="Views\GioHang\GioHang.cshtml" />
     <Content Include="Views\MonAns\Details.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
-    <Content Include="Views\ChuDes\Create.cshtml" />
-    <Content Include="Views\ChuDes\Delete.cshtml" />
-    <Content Include="Views\ChuDes\Details.cshtml" />
-    <Content Include="Views\ChuDes\Edit.cshtml" />
-    <Content Include="Views\ChuDes\Index.cshtml" />
     <Content Include="Views\GioHang\SuaGioHang.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\ChuDes\MonAnTheoChuDe.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Layout\AdminLayout.cshtml" />
-    <Content Include="Views\Admins\Index.cshtml" />
-    <Content Include="Views\KhachVangLais\Create.cshtml" />
-    <Content Include="Views\KhachVangLais\Delete.cshtml" />
-    <Content Include="Views\KhachVangLais\Details.cshtml" />
-    <Content Include="Views\KhachVangLais\Edit.cshtml" />
-    <Content Include="Views\KhachVangLais\Index.cshtml" />
-    <Content Include="Views\HoaDonThanhToans\Create.cshtml" />
-    <Content Include="Views\HoaDonThanhToans\Delete.cshtml" />
-    <Content Include="Views\HoaDonThanhToans\Details.cshtml" />
-    <Content Include="Views\HoaDonThanhToans\Edit.cshtml" />
-    <Content Include="Views\HoaDonThanhToans\Index.cshtml" />
-    <Content Include="Views\DonHangs\Create.cshtml" />
-    <Content Include="Views\DonHangs\Delete.cshtml" />
-    <Content Include="Views\DonHangs\Details.cshtml" />
-    <Content Include="Views\DonHangs\Edit.cshtml" />
-    <Content Include="Views\DonHangs\Index.cshtml" />
     <Content Include="Views\Login\DangNhap.cshtml" />
     <Content Include="Views\Login\DangKy.cshtml" />
     <Content Include="Views\KhachHangs\Create.cshtml" />
@@ -497,6 +481,43 @@
     <Content Include="Views\KhachHangs\Details.cshtml" />
     <Content Include="Views\KhachHangs\Edit.cshtml" />
     <Content Include="Views\KhachHangs\Index.cshtml" />
+    <Content Include="Views\Login\TaiKhoan.cshtml" />
+    <Content Include="Views\Layout\Admin1Layout.cshtml" />
+    <Content Include="Views\GiamGias\Create.cshtml" />
+    <Content Include="Views\GiamGias\Delete.cshtml" />
+    <Content Include="Views\GiamGias\Details.cshtml" />
+    <Content Include="Views\GiamGias\Edit.cshtml" />
+    <Content Include="Views\GiamGias\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\ChuDes\Create.cshtml" />
+    <Content Include="Views\ChuDes\Delete.cshtml" />
+    <Content Include="Views\ChuDes\Details.cshtml" />
+    <Content Include="Views\ChuDes\Edit.cshtml" />
+    <Content Include="Views\ChuDes\Index.cshtml" />
+    <Content Include="Views\DonHangs\Create.cshtml" />
+    <Content Include="Views\DonHangs\Delete.cshtml" />
+    <Content Include="Views\DonHangs\Details.cshtml" />
+    <Content Include="Views\DonHangs\Edit.cshtml" />
+    <Content Include="Views\DonHangs\Index.cshtml" />
+    <Content Include="Views\HoaDonThanhToans\Create.cshtml" />
+    <Content Include="Views\HoaDonThanhToans\Delete.cshtml" />
+    <Content Include="Views\HoaDonThanhToans\Details.cshtml" />
+    <Content Include="Views\HoaDonThanhToans\Edit.cshtml" />
+    <Content Include="Views\HoaDonThanhToans\Index.cshtml" />
+    <Content Include="Views\KhuyenMais\Create.cshtml" />
+    <Content Include="Views\KhuyenMais\Delete.cshtml" />
+    <Content Include="Views\KhuyenMais\Details.cshtml" />
+    <Content Include="Views\KhuyenMais\Edit.cshtml" />
+    <Content Include="Views\KhuyenMais\Index.cshtml" />
+    <Content Include="Views\MonAns\Create.cshtml" />
+    <Content Include="Views\MonAns\Delete.cshtml" />
+    <Content Include="Views\MonAns\Edit.cshtml" />
+    <Content Include="Views\MonAns\Index.cshtml" />
+    <Content Include="Views\KhachVangLais\Create.cshtml" />
+    <Content Include="Views\KhachVangLais\Delete.cshtml" />
+    <Content Include="Views\KhachVangLais\Details.cshtml" />
+    <Content Include="Views\KhachVangLais\Edit.cshtml" />
+    <Content Include="Views\KhachVangLais\Index.cshtml" />
     <Content Include="Views\NhanViens\Create.cshtml" />
     <Content Include="Views\NhanViens\Delete.cshtml" />
     <Content Include="Views\NhanViens\Details.cshtml" />
@@ -507,7 +528,9 @@
     <Content Include="Views\TaiKhoans\Details.cshtml" />
     <Content Include="Views\TaiKhoans\Edit.cshtml" />
     <Content Include="Views\TaiKhoans\Index.cshtml" />
-    <Content Include="Views\Login\TaiKhoan.cshtml" />
+    <Content Include="Views\ChuDes\MonAnTheoChuDePartial.cshtml" />
+    <Content Include="Views\GioHang\DatHangTrucTiep.cshtml" />
+    <Content Include="Views\Home\ListKhuyenMai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -526,7 +549,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

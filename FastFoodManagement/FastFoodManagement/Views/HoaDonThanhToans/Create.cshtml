@@ -1,30 +1,19 @@
 ﻿@model FastFoodManagement.Models.HoaDonThanhToan
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
 }
 
-<h2>Create</h2>
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>HoaDonThanhToan</h4>
+
+    <div class="form-horizontal" style="font-size:15px;">
+        <h4>Hóa đơn thanh toán - thêm mới</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.MaNhanVien, "MaNhanVien", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaNhanVien", null, "Nhân viên chưa thanh toán", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MaNhanVien, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaKhachHang, "MaKhachHang", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaKhachHang, "Tên khách hàng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("MaKhachHang", null, "Khách vãng lai đặt hàng", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MaKhachHang, "", new { @class = "text-danger" })
@@ -32,7 +21,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaKhachVangLai, "MaKhachVangLai", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaKhachVangLai, "Tên khách vãng lai", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("MaKhachVangLai", null, "Khách hàng đặt hàng", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MaKhachVangLai, "", new { @class = "text-danger" })
@@ -40,29 +29,88 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ThanhToan, "Thanh toán", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ThanhToan)
+                    @Html.ValidationMessageFor(model => model.ThanhToan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GhiChu, "Ghi chú", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ThoiGianDatHang, "Thời gian đặt hàng", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ThoiGianDatHang, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ThoiGianDatHang, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ThoiGianThanhToan, "Thời gian thanh toán", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ThoiGianThanhToan, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ThoiGianThanhToan, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
         <div class="form-group">
-            @Html.LabelFor(model => model.ThoiGian, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ThoiGianDatHang, "Thời gian đặt hàng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ThoiGian, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ThoiGian, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ThoiGianDatHang, new { htmlAttributes = new { @Value = DateTime.Now, @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThoiGianDatHang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThoiGianThanhToan, "Thời gian thanh toán", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThoiGianThanhToan, new { htmlAttributes = new { @Value = DateTime.Now, @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThoiGianThanhToan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GiaoHang, "Đã giao hàng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.GiaoHang)
+                    @Html.ValidationMessageFor(model => model.GiaoHang, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DonHangs, "Đơn hàng - Tên món ăn", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaMonAn", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaKhachHang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DonHangs, "Đơn hàng - Số lượng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="txtSoLuong" type="text" class="form-control" />
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Thêm dữ liệu" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về", "Index")
 </div>

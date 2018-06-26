@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FastFoodManagement.Models;
+using PagedList;
 
 namespace FastFoodManagement.Controllers
 {
@@ -15,9 +16,38 @@ namespace FastFoodManagement.Controllers
         private FastFoodManagementEntities1 db = new FastFoodManagementEntities1();
 
         // GET: KhachHangs
-        public ActionResult Index()
+        public ActionResult Index(int? page, string hoten)
         {
-            return View(db.KhachHangs.ToList());
+            #region phan quyen
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "Login");
+            }
+            TaiKhoan check = Session["TaiKhoan"] as TaiKhoan;
+            if (check.LoaiTaiKhoan != 0)
+            {
+                //ViewBag.ThongBao = "Tài khoản của bạn không được phép truy cập!";
+                if (check.LoaiTaiKhoan == 2)
+                {
+                    TempData["msg"] = "<script>alert('Tài khoản của bạn không được phép truy cập!');</script>";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["msg"] = "<script>alert('Chỉ admin mới được phép truy cập các bảng này!');</script>";
+                    return RedirectToAction("Index", "Admin");
+                }
+            }
+            #endregion
+
+            #region tim kiem, phan trang
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            if (hoten == null || hoten == "")
+                return View(db.KhachHangs.ToList().OrderBy(n => n.TenKhachHang).ToPagedList(pageNumber, pageSize));
+            else
+                return View(db.KhachHangs.Where(n => n.TenKhachHang.Contains(hoten)).ToList().OrderBy(n => n.TenKhachHang).ToPagedList(pageNumber, pageSize));
+            #endregion
         }
 
         // GET: KhachHangs/Details/5
@@ -90,24 +120,24 @@ namespace FastFoodManagement.Controllers
         }
 
         // GET: KhachHangs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            if (khachHang == null)
-            {
-                return HttpNotFound();
-            }
-            return View(khachHang);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    KhachHang khachHang = db.KhachHangs.Find(id);
+        //    if (khachHang == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(khachHang);
+        //}
 
-        // POST: KhachHangs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        //// POST: KhachHangs/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
         {
             KhachHang khachHang = db.KhachHangs.Find(id);
             db.KhachHangs.Remove(khachHang);

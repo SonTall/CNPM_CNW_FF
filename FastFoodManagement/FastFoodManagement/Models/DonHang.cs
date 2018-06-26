@@ -18,7 +18,7 @@ namespace FastFoodManagement.Models
         public int MaMonAn { get; set; }
         public int SoLuong { get; set; }
     
-        public virtual MonAn MonAn { get; set; }
         public virtual HoaDonThanhToan HoaDonThanhToan { get; set; }
+        public virtual MonAn MonAn { get; set; }
     }
 }

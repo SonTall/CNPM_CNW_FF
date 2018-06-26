@@ -1,40 +1,61 @@
-﻿@model IEnumerable<FastFoodManagement.Models.ChuDe>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<FastFoodManagement.Models.ChuDe>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h4>Chủ đề</h4>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm mới", "Create")
 </p>
-<table class="table">
+
+@using (Html.BeginForm("Index", "ChuDes", FormMethod.Get))
+{
+    <div class="form-group form-inline">
+        <input type="text" class="form-control" placeholder="Nhập tên chủ đề:" name="tenchude">
+        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+    </div>
+}
+
+<table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TenChuDe)
+            Tên chủ đề
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MoTa)
+            Mô tả
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenChuDe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoTa)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaChuDe }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaChuDe }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaChuDe })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenChuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaChuDe }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaChuDe }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa mục này không?');" })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang li {
+        margin: 5px;
+        font-size: 17px;
+    }
+</style>

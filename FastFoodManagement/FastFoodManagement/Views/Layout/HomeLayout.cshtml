@@ -1,75 +1,76 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Aside - Free HTML5 Bootstrap 4 Template by uicookies.com</title>
+    <title>FastFood-SonCao-KTPM14</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Free HTML5 Website Template by uicookies.com" />
-    <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
-    <meta name="author" content="uicookies.com" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
 
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 
-    <link rel="stylesheet" href="~/Content/aside//bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/aside//open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/open-iconic-bootstrap.min.css">
 
-    <link rel="stylesheet" href="~/Content/aside//owl.carousel.min.css">
-    <link rel="stylesheet" href="~/Content/aside//owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
 
-    <link rel="stylesheet" href="~/Content/aside//icomoon.css">
-    <link rel="stylesheet" href="~/Content/aside//animate.css">
-    <link rel="stylesheet" href="~/Content/aside/style.css">
+    <link rel="stylesheet" href="~/Content/css/icomoon.css">
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 <body>
 
     <aside class="probootstrap-aside js-probootstrap-aside">
-        @*<a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>*@
         <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
-
             <a href="#" class="mb-2 d-block probootstrap-logo">FastFood</a>
-            @*<p class="mb-0">Another free html5 bootstrap 4 template by <a href="https://uicookies.com/" target="_blank">uiCookies</a></p>*@
         </div>
         <div class="probootstrap-overflow">
             <nav class="probootstrap-nav">
                 <ul>
-                    @* <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="">Trang chủ</a></li>*@
-                    @*@Html.ActionLink("Back to List", "Index")*@
-                    @* <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="index.html">Giỏ hàng</a></li>*@
-                    @*<li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="index.html">Thực đơn</a></li>
-                        <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="index.html">Thông tin</a></li>
-                        <li class="probootstrap-animate" data-animate-effect="fadeInLeft"><a href="#">Đăng nhập</a></li>*@
-                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft"> @Html.ActionLink("Trang chủ", "Index", "Home") </li>
+                    <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"> @Html.ActionLink("Trang chủ", "Index", "Home") </li>
                     <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Giỏ hàng ", "GioHang", "GioHang") @Html.Action("GioHangPartial", "GioHang")</li>
                     <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Thực đơn", "MonAnTheoChuDe", "ChuDes")</li>
+                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Khuyến mãi", "ListKhuyenMai", "Home")</li>
                     <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Thông tin", "About", "Home")</li>
                     <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Tài khoản", "DangNhap", "Login")</li>
-                    <li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Quản trị", "Index", "Admins")</li>
+                    @*<li class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Quản trị", "Index", "Admin")</li>*@
                 </ul>
             </nav>
             <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
-                <ul class="list-unstyled d-flex probootstrap-aside-social">
-                    <li><a href="#" class="p-2"><span class="icon-facebook"></span></a></li>
-                    <li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
-                    <li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+                <div class="probootstrap-animate" data-animate-effect="fadeInLeft">@Html.ActionLink("Đăng ký tài khoản?", "DangKy", "Login")</div>
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+                <ul class="list-unstyled d-flex probootstrap-aside-social" style="">
+                    @*<li><a href="#" class="p-2"><span resource=""></span></a></li>
+                        <li><a href="#" class="p-2"><span class="icon-shop"></span></a></li>
+                        <li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>*@
+                    <li><a href="@Url.Action("Index", "Admin")" class="p-2"><img src="~/HinhAnh/icon/settings.png"></a></li>
+                    <li><a href="#" class="p-2"><img src="~/HinhAnh/icon/facebook-logo.png" alt="Facebook"></a></li>
+                    <li><a href="#" class="p-2"><img src="~/HinhAnh/icon/envelope.png"></a></li>
+                    <li><a href="#" class="p-2"><img src="~/HinhAnh/icon/phone-call.png"></a></li>
                 </ul>
-                <p>&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Aside</a>. <br> All Rights Reserved.</p>
+                <p>&copy; @DateTime.Now <br />:15150163</p>
+                @*<a href="https://uicookies.com/" target="_blank">uiCookies:Aside</a>. <br> All Rights Reserved.*@
             </footer>
         </div>
     </aside>
 
+    <main role="main" class="probootstrap-main js-probootstrap-main" style="font-size:15px;">
+        @RenderBody()
+    </main>
 
-    @RenderBody()
 
-    <script src="~/Scripts/aside/jquery-3.2.1.slim.min.js"></script>
-    <script src="~/Scripts/aside/popper.min.js"></script>
-    <script src="~/Scripts/aside/bootstrap.min.js"></script>
-    <script src="~/Scripts/aside/owl.carousel.min.js"></script>
-    <script src="~/Scripts/aside/jquery.waypoints.min.js"></script>
-    <script src="~/Scripts/aside/imagesloaded.pkgd.min.js"></script>
-    <script src="~/Scripts/aside/main.js"></script>
+    <script src="~/Content/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.waypoints.min.js"></script>
+    <script src="~/Content/js/imagesloaded.pkgd.min.js"></script>
 
-    @*  <script src="~/Scripts/bootstrap.js"></script>*@
+    <script src="~/Content/js/main.js"></script>
 
 </body>
 </html>

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FastFoodManagement.Models;
+using PagedList;
 
 namespace FastFoodManagement.Controllers
 {
@@ -15,9 +17,39 @@ namespace FastFoodManagement.Controllers
         private FastFoodManagementEntities1 db = new FastFoodManagementEntities1();
 
         // GET: ChuDes
-        public ActionResult Index()
+        public ActionResult Index(int? page, string tenchude)
         {
-            return View(db.ChuDes.ToList());
+            #region phan quyen
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "Login");
+            }
+            TaiKhoan check = Session["TaiKhoan"] as TaiKhoan;
+            if (check.LoaiTaiKhoan != 0 && check.LoaiTaiKhoan != 1)
+            {
+                //ViewBag.ThongBao = "Tài khoản của bạn không được phép truy cập!";
+                TempData["msg"] = "<script>alert('Tài khoản của bạn không được phép truy cập!');</script>";
+                return RedirectToAction("Index", "Home");
+            }
+            #endregion
+
+            #region tim kiem, phan trang
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            if (tenchude == "" || tenchude == null)
+            {
+                return View(db.ChuDes.ToList().OrderBy(n => n.TenChuDe).ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                return View(db.ChuDes.SqlQuery("select * from ChuDe where TenChuDe like '%'+@ten+'%'", new SqlParameter("@ten", tenchude)).ToList().OrderBy(n => n.TenChuDe).ToPagedList(pageNumber, pageSize));
+            }
+            #endregion
+        }
+
+        public PartialViewResult MonAnTheoChuDePartial()
+        {
+            return PartialView(db.ChuDes.OrderBy(n => n.TenChuDe).ToList());
         }
 
         public ViewResult MonAnTheoChuDe(int machude = 0)
@@ -43,20 +75,7 @@ namespace FastFoodManagement.Controllers
             return View(lstMonAn);
         }
 
-        // GET: ChuDes/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ChuDe chuDe = db.ChuDes.Find(id);
-            if (chuDe == null)
-            {
-                return HttpNotFound();
-            }
-            return View(chuDe);
-        }
+
 
         // GET: ChuDes/Create
         public ActionResult Create()
@@ -112,25 +131,7 @@ namespace FastFoodManagement.Controllers
             return View(chuDe);
         }
 
-        // GET: ChuDes/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ChuDe chuDe = db.ChuDes.Find(id);
-            if (chuDe == null)
-            {
-                return HttpNotFound();
-            }
-            return View(chuDe);
-        }
-
-        // POST: ChuDes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             ChuDe chuDe = db.ChuDes.Find(id);
             db.ChuDes.Remove(chuDe);

@@ -1,0 +1,43 @@
+﻿@model FastFoodManagement.Models.GiamGia
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/Admin1Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GiamGia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoaDonThanhToan.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaDonThanhToan.GhiChu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhuyenMai.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhuyenMai.MoTa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

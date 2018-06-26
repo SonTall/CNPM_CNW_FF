@@ -25,15 +25,16 @@ namespace FastFoodManagement.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ChuDe> ChuDes { get; set; }
         public virtual DbSet<DonHang> DonHangs { get; set; }
+        public virtual DbSet<GiamGia> GiamGias { get; set; }
+        public virtual DbSet<HoaDonThanhToan> HoaDonThanhToans { get; set; }
+        public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<KhachVangLai> KhachVangLais { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
         public virtual DbSet<MonAn> MonAns { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<ChuDe> ChuDes { get; set; }
-        public virtual DbSet<KhachHang> KhachHangs { get; set; }
-        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
-        public virtual DbSet<HoaDonThanhToan> HoaDonThanhToans { get; set; }
     }
 }
